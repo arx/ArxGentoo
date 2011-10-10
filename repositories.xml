@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
+<repositories xmlns="" version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name><![CDATA[arx-fatalis]]></name>
+    <description><![CDATA[Arx Fatalis Overlay]]></description>
+    <homepage>https://github.com/lubosz/ArxFatalis</homepage>
+    <owner>
+      <email>dscharrer@gmail.com</email>
+      <name><![CDATA[Daniel Scharrer]]></name>
+    </owner>
+    <source type="git">git://github.com/yporti/overlay.git</source>
+  </repo>
+</repositories>
