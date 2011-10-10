@@ -9,6 +9,6 @@
       <email>dscharrer@gmail.com</email>
       <name><![CDATA[Daniel Scharrer]]></name>
     </owner>
-    <source type="git">git://github.com/yporti/overlay.git</source>
+		<source type="git">file:///home/dscharrer/Games/Arx/gentoo/</source>
   </repo>
 </repositories>
