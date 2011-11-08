@@ -1,11 +1,11 @@
 
 EAPI="2"
-EGIT_REPO_URI="git://github.com/lubosz/ArxFatalis.git"
+EGIT_REPO_URI="git://github.com/arx/ArxLibertatis.git"
 
 inherit eutils games cmake-utils git-2
 
 DESCRIPTION="Cross-platform port of Arx Fatails"
-HOMEPAGE="https://github.com/lubosz/ArxFatalis"
+HOMEPAGE="http://arx.parpg.net/"
 SRC_URI=""
 
 LICENSE="GPL-3"
