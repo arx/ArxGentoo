@@ -40,7 +40,15 @@ src_configure() {
 	cmake-utils_src_configure || die
 }
 
+src_install() {
+	cmake-utils_src_install
+	prepgamesdirs
+}
+
 pkg_postinst() {
+	
 	elog "This package only installs the game binary."
 	elog "You will also need the demo or full game data."
+	
+	games_pkg_postinst
 }
