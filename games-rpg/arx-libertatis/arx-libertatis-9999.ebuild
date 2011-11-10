@@ -28,10 +28,13 @@ src_configure() {
 	
 	local mycmakeargs
 	mycmakeargs+=(
-		$(cmake-utils_use debug ARX_DEBUG)
 		$(cmake-utils_use unity-build ARX_USE_UNITYBUILD)
 		$(cmake-utils_use tools ARX_BUILD_TOOLS)
 	)
+	
+	if use debug ; then
+		CMAKE_BUILD_TYPE=Debug
+	fi
 	
 	cmake-utils_src_configure || die
 }
@@ -40,7 +43,7 @@ src_install() {
 	
 	dogamesbin "${S}/bin/arx" || die
 	
-	if use tools; then
+	if use tools ; then
 		mv "${S}/bin/unpak" "${S}/bin/arx-unpak" || die
 		dogamesbin "${S}/bin/arx-unpak" || die
 		mv "${S}/bin/savetool" "${S}/bin/arx-savetool" || die
