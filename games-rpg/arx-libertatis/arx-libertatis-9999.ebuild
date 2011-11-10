@@ -30,6 +30,7 @@ src_configure() {
 	mycmakeargs+=(
 		$(cmake-utils_use unity-build ARX_USE_UNITYBUILD)
 		$(cmake-utils_use tools ARX_BUILD_TOOLS)
+		"-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}"
 	)
 	
 	if use debug ; then
@@ -37,20 +38,6 @@ src_configure() {
 	fi
 	
 	cmake-utils_src_configure || die
-}
-
-src_install() {
-	
-	cmake-utils_src_install
-	
-	dogamesbin "${PREFIX}/bin/arx" || die
-	
-	if use tools ; then
-		dogamesbin "${PREFIX}/bin/arxunpak" || die
-		dogamesbin "${PREFIX}/bin/arxsavetool" || die
-	fi
-	
-	prepgamesdirs
 }
 
 pkg_postinst() {
