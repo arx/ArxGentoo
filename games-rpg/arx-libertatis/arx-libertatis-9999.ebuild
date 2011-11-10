@@ -41,13 +41,13 @@ src_configure() {
 
 src_install() {
 	
-	dogamesbin "${S}/bin/arx" || die
+	cmake-utils_src_install
+	
+	dogamesbin "${PREFIX}/bin/arx" || die
 	
 	if use tools ; then
-		mv "${S}/bin/unpak" "${S}/bin/arx-unpak" || die
-		dogamesbin "${S}/bin/arx-unpak" || die
-		mv "${S}/bin/savetool" "${S}/bin/arx-savetool" || die
-		dogamesbin "${S}/bin/arx-savetool" || die
+		dogamesbin "${PREFIX}/bin/arxunpak" || die
+		dogamesbin "${PREFIX}/bin/arxsavetool" || die
 	fi
 	
 	prepgamesdirs
