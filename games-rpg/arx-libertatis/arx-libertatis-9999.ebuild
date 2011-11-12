@@ -11,7 +11,7 @@ SRC_URI=""
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="+debug +unity-build +tools"
+IUSE="+debug +unity-build tools"
 
 RDEPEND="<media-libs/libsdl-1.3[opengl]
 	media-libs/devil[jpeg]
