@@ -16,6 +16,7 @@ IUSE="+debug +unity-build tools"
 RDEPEND="<media-libs/libsdl-1.3[opengl]
 	media-libs/devil[jpeg]
 	media-libs/openal
+	media-libs/freetype
 	sys-libs/zlib
 	dev-libs/boost
 	media-libs/glew
