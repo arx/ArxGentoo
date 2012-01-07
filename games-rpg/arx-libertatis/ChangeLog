@@ -1,0 +1,8 @@
+# ChangeLog for games-rpg/arx-libertatis
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  07 Jan 2012; Daniel Scharrer <dscharrer@gmail.com>
+  arx-libertatis-9999.ebuild:
+  Adjust the live ebuild to changed cmake option names.
+

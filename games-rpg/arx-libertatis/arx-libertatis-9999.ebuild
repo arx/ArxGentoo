@@ -29,8 +29,8 @@ src_configure() {
 	
 	local mycmakeargs
 	mycmakeargs+=(
-		$(cmake-utils_use unity-build ARX_USE_UNITYBUILD)
-		$(cmake-utils_use tools ARX_BUILD_TOOLS)
+		$(cmake-utils_use unity-build UNITY_BUILD)
+		$(cmake-utils_use tools BUILD_TOOLS)
 		"-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}"
 	)
 	
