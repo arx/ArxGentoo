@@ -30,7 +30,7 @@ Overlays added using layman won't be updated by `emerge --fetch`, you need to ru
 
 As `games-rpg/arx-libertatis-9999` is a live ebuild, it won't be updated automatically (the version never changes), you need to manually re-emerge it.
 
-Also see the [wiki page on installing Arx Libertatis under Linux](http://arx.parpg.net/Downloading_and_Compiling_under_Linux#16px.7C_Gentoo_Linux)
+Also see the [wiki page on installing Arx Libertatis under Linux](http://arx.parpg.net/Downloading_and_Compiling_under_Linux#Gentoo_Linux)
 
 ## Contact
 
