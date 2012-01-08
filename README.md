@@ -8,25 +8,25 @@ Refer to the [Wiki](http://arx.parpg.net/) on how to install Arx Libertatis [und
 
 You will need [layman](http://layman.sourceforge.net/) with **git** support, so install that first if you don't have it already:
 
-  echo "app-portage/layman git" >> /etc/portage/package.use
-  emerge -N app-portage/layman
+    echo "app-portage/layman git" >> /etc/portage/package.use
+    emerge -N app-portage/layman
 
 Next, you need to add the **arx-libertatis** overlay that contains the arx ebuild.
 
-  layman -f
-  layman -a arx-libertatis
+    layman -f
+    layman -a arx-libertatis
 
 For now, there is only a live ebuild: this will compile and install the current ArxLibertatis git master. Like most gentoo live ebuilds, **games-rpg/arx-libertatis** needs to be unmasked before you can istall it:
 
-  echo "games-rpg/arx-libertatis **" >> /etc/portage/package.keywords
-  emerge games-rpg/arx-libertatis
+    echo "games-rpg/arx-libertatis **" >> /etc/portage/package.keywords
+    emerge games-rpg/arx-libertatis
 
 This will install `/usr/games/bin/arx`. Remember that you need to be in the games group to run games under gentoo.
 Updating
 
 Overlays added using layman won't be updated by `emerge --fetch`, you need to run
 
-  layman -S
+    layman -S
 
 As `games-rpg/arx-libertatis-9999` is a live ebuild, it won't be updated automatically (the version never changes), you need to manually re-emerge it.
 
