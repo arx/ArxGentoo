@@ -20,8 +20,7 @@ RDEPEND="<media-libs/libsdl-1.3[opengl]
 	sys-libs/zlib
 	dev-libs/boost
 	media-libs/glew
-	virtual/opengl
-	virtual/glu"
+	virtual/opengl"
 
 DEPEND="${RDEPEND}"
 
