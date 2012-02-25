@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<maintainer>
-	<email>dscharrer@gmail.com</email>
-	<description>Description of the maintainership</description>
-</maintainer>
-<longdescription>Cross-platform port of the GPLed Arx Fatalis sources to Linux, OpenGL, OpenAL and SDL. This package only includes the game executable - you will also need the data files from the original game.</longdescription>
-<use>
-	<flag name='tools'>Build tools that can extract the game's data and save files.</flag>
-	<flag name='unity-build'>Build everything in one big source file, allowing for faster build times and better optimizations at the cost of higher memory usage.</flag>
-</use>
+	<maintainer>
+		<email>daniel@constexpr.org</email>
+		<name>Daniel Scharrer</name>
+	</maintainer>
+	<longdescription>Cross-platform port of the GPLed Arx Fatalis sources to Linux, OpenGL, OpenAL and SDL. This package only includes the game executable - you will also need the data files from the original game.</longdescription>
+	<use>
+		<flag name='tools'>Build tools that can extract the game's data and save files.</flag>
+		<flag name='unity-build'>Build everything in one big source file, allowing for faster build times and better optimizations at the cost of higher memory usage.</flag>
+	</use>
 </pkgmetadata> 

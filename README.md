@@ -1,6 +1,6 @@
 # ArxGentoo - Arx Libertatis gentoo overlay
 
-This is a gentoo overlay that can be used with layman to install [Arx Libertatis](https://github.com/arx/ArxLibertatis) under [Gentoo Linux](http://www.gentoo.org/).
+This is a gentoo overlay that can be used with layman to install [Arx Libertatis](http://arx-libertatis.org/) under [Gentoo Linux](http://www.gentoo.org/).
 
 Refer to the [Wiki](http://arx.parpg.net/) on how to install Arx Libertatis [under other linux distributions](http://arx.parpg.net/Downloading_and_Compiling_under_Linux) or [under windows](http://arx.parpg.net/Downloading_and_Compiling_under_Windows)
 
@@ -36,6 +36,4 @@ Also see the [wiki page on installing Arx Libertatis under Linux](http://arx.par
 
 IRC: \#arxfatalis on irc.freenode.net
 
-Wiki: [http://arx.parpg.net/](http://arx.parpg.net/)
-
-Reddit: [http://www.reddit.com/r/ArxFatalis/](http://www.reddit.com/r/ArxFatalis/)
+Website: [http://arx-libertatis.org/](http://arx-libertatis.org/)

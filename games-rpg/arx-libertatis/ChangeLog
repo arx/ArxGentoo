@@ -2,11 +2,15 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-  16 Jan 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  25 Feb 2012; Daniel Scharrer <daniel@constex.org>
+  arx-libertatis-9999.ebuild, metadata.xml:
+  Update website URL and emails.
+
+  16 Jan 2012; Daniel Scharrer <daniel@constex.org>
   arx-libertatis-9999.ebuild:
   Remove dependency on virtual/glu.
 
-  07 Jan 2012; Daniel Scharrer <dscharrer@gmail.com>
+  07 Jan 2012; Daniel Scharrer <daniel@constex.org>
   arx-libertatis-9999.ebuild:
   Adjust the live ebuild to changed cmake option names.
 

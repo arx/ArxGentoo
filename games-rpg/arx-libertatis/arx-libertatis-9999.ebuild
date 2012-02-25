@@ -5,7 +5,7 @@ EGIT_REPO_URI="git://github.com/arx/ArxLibertatis.git"
 inherit eutils games cmake-utils git-2
 
 DESCRIPTION="Cross-platform port of Arx Fatails"
-HOMEPAGE="http://arx.parpg.net/"
+HOMEPAGE="http://arx-libertatis.org/"
 SRC_URI=""
 
 LICENSE="GPL-3"
