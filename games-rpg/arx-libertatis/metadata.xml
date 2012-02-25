@@ -10,4 +10,8 @@
 		<flag name='tools'>Build tools that can extract the game's data and save files.</flag>
 		<flag name='unity-build'>Build everything in one big source file, allowing for faster build times and better optimizations at the cost of higher memory usage.</flag>
 	</use>
+	<upstream>
+		<doc lang="en">http://wiki.arx-libertatis.org/</doc>
+		<bugs-to>https://bugs.arx-libertatis.org/</bugs-to>
+	</upstream>
 </pkgmetadata> 
