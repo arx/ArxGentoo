@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer>
+		<email>daniel@constexpr.org</email>
+		<name>Daniel Scharrer</name>
+	</maintainer>
+	<longdescription>Inno Setup is a tool to create installers for Microsoft Windows applications. Inno Extracts allows to extract such installers under non-windows systems without running the actual installer using wine.</longdescription>
+	<upstream>
+		<bugs-to>https://github.com/dscharrer/InnoExtract/issues</bugs-to>
+	</upstream>
+</pkgmetadata> 

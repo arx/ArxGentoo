@@ -1,0 +1,10 @@
+# ChangeLog for app-arch/innoextract
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*innoextract-9999 (01 Mar 2012)
+
+  01 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org> +innoextract-9999.ebuild,
+  +metadata.xml:
+  Add initial Inno Extract live ebuild.
+
