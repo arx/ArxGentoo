@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  arx-libertatis-9999.ebuild:
+  Install the README.md and AUTHORS files.
+
   25 Feb 2012; Daniel Scharrer <daniel@constex.org>
   arx-libertatis-9999.ebuild, metadata.xml:
   Update website URL and emails.
