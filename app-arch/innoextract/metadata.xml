@@ -8,5 +8,7 @@
 	<longdescription>Inno Setup is a tool to create installers for Microsoft Windows applications. Inno Extracts allows to extract such installers under non-windows systems without running the actual installer using wine.</longdescription>
 	<upstream>
 		<bugs-to>https://github.com/dscharrer/InnoExtract/issues</bugs-to>
+		<remote-id type="freshmeat">inno-extract</remote-id>
+		<remote-id type="sourceforge">innoextract</remote-id>
 	</upstream>
 </pkgmetadata> 

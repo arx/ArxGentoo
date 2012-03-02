@@ -1,17 +1,17 @@
 
 EAPI="2"
-EGIT_REPO_URI="git://github.com/dscharrer/InnoExtract.git"
 
-inherit eutils cmake-utils git-2
+inherit eutils cmake-utils
 
 DESCRIPTION="A tool to extract installers created by Inno Setup"
 HOMEPAGE="https://innoextract.constexpr.org/"
-SRC_URI=""
+SRC_URI="github://dscharrer/InnoExtract/${P}.tar.gz
+mirror://sourceforge/innoextract/${P}.tar.gz"
 
 LICENSE="ZLIB"
 SLOT="0"
-KEYWORDS=""
-IUSE="+debug +lzma"
+KEYWORDS="x86 amd64"
+IUSE="debug +lzma"
 
 RDEPEND=">=dev-libs/boost-1.37
 	lzma? ( app-arch/xz-utils )"

@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*innoextract-1.0 (02 Mar 2012)
+
+  02 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org> +innoextract-1.0.ebuild,
+  innoextract-9999.ebuild, metadata.xml:
+  Add ebuild for version 1.0.
+
 *innoextract-9999 (01 Mar 2012)
 
   01 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org> +innoextract-9999.ebuild,
