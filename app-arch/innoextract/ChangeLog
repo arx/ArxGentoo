@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org> innoextract-1.0.ebuild:
+  Fix github download URL.
+
 *innoextract-1.0 (02 Mar 2012)
 
   02 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org> +innoextract-1.0.ebuild,

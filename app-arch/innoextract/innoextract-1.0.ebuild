@@ -5,7 +5,7 @@ inherit eutils cmake-utils
 
 DESCRIPTION="A tool to extract installers created by Inno Setup"
 HOMEPAGE="https://innoextract.constexpr.org/"
-SRC_URI="github://dscharrer/InnoExtract/${P}.tar.gz
+SRC_URI="mirror://github/dscharrer/InnoExtract/${P}.tar.gz
 mirror://sourceforge/innoextract/${P}.tar.gz"
 
 LICENSE="ZLIB"
