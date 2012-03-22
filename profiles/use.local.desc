@@ -1,0 +1,10 @@
+# This file is deprecated as per GLEP 56 in favor of metadata.xml. Please add
+# your descriptions to your package's metadata.xml ONLY.
+# * generated automatically using egencache *
+
+app-arch/innoextract:debug - Enable debug logging and the --debug command-line option.
+app-arch/innoextract:lzma - Add support for extracting lzma-compressed installers using app-arch/xz-utils
+games-rpg/arx-libertatis:crash-reporter - Build a x11-libs/qt-gui-based tool that allows to submit crash information to the upstream backtracker.
+games-rpg/arx-libertatis:debug - Enable asserts and debug logging and disable optimizations.
+games-rpg/arx-libertatis:tools - Build tools that can extract the game's data and save files.
+games-rpg/arx-libertatis:unity-build - Build everything in one big source file, allowing for faster build times and better optimizations at the cost of higher memory usage.

@@ -6,8 +6,13 @@
 		<name>Daniel Scharrer</name>
 	</maintainer>
 	<longdescription>Inno Setup is a tool to create installers for Microsoft Windows applications. Inno Extracts allows to extract such installers under non-windows systems without running the actual installer using wine.</longdescription>
+	<use>
+		<flag name='debug'>Enable debug logging and the --debug command-line option.</flag>
+		<flag name='lzma'>Add support for extracting lzma-compressed installers using <pkg>app-arch/xz-utils</pkg></flag>
+	</use>
 	<upstream>
-		<bugs-to>https://github.com/dscharrer/InnoExtract/issues</bugs-to>
+		<doc lang="en">http://innoextract.constexpr.org/wiki</doc>
+		<bugs-to>http://innoextract.constexpr.org/issues</bugs-to>
 		<remote-id type="freshmeat">inno-extract</remote-id>
 		<remote-id type="sourceforge">innoextract</remote-id>
 	</upstream>
