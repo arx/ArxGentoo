@@ -9,6 +9,7 @@
 	<use>
 		<flag name='tools'>Build tools that can extract the game's data and save files.</flag>
 		<flag name='unity-build'>Build everything in one big source file, allowing for faster build times and better optimizations at the cost of higher memory usage.</flag>
+		<flag name='crash-reporter'>Build at Qt-based tool that allows to submit crash information to the upstream backtracker.</flag>
 	</use>
 	<upstream>
 		<doc lang="en">http://wiki.arx-libertatis.org/</doc>

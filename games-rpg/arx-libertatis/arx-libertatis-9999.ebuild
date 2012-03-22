@@ -11,18 +11,23 @@ SRC_URI=""
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="+debug +unity-build tools"
+IUSE="+debug +unity-build +crash-reporter tools"
 
-RDEPEND="<media-libs/libsdl-1.3[opengl]
+ARX_DEPEND="\
+	<media-libs/libsdl-1.3[opengl]
 	media-libs/devil[jpeg]
 	media-libs/openal
 	media-libs/freetype
 	sys-libs/zlib
 	dev-libs/boost
 	media-libs/glew
-	virtual/opengl"
+	virtual/opengl
+	crash-reporter? ( x11-libs/qt-core[ssl] x11-libs/qt-gui )"
 
-DEPEND="${RDEPEND}"
+RDEPEND="${ARX_DEPEND}
+	crash-reporter? ( sys-devel/gdb )"
+
+DEPEND="${ARX_DEPEND}"
 
 src_configure() {
 	
@@ -30,6 +35,7 @@ src_configure() {
 	mycmakeargs+=(
 		$(cmake-utils_use unity-build UNITY_BUILD)
 		$(cmake-utils_use tools BUILD_TOOLS)
+		$(cmake-utils_use crash-reporter BUILD_CRASHREPORTER)
 		"-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}"
 	)
 	
