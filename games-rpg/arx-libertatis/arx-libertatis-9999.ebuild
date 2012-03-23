@@ -48,8 +48,7 @@ src_configure() {
 
 src_install() {
 	cmake-utils_src_install
-	dodoc README.md AUTHORS
-	# TODO install a CHANGELOG once there is one
+	dodoc README.md AUTHORS CHANGELOG
 	prepgamesdirs
 }
 

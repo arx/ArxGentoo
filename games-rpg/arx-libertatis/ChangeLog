@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  arx-libertatis-9999.ebuild:
+  Install the CHANGELOG file.
+
   22 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org>
   arx-libertatis-9999.ebuild, metadata.xml:
   Add a crash-reporter use flag.
