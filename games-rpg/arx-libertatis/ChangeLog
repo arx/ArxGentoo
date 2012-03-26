@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  arx-libertatis-9999.ebuild, metadata.xml:
+  Fix icon and desktop file location.
+
   23 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org>
   arx-libertatis-9999.ebuild:
   Install the CHANGELOG file.

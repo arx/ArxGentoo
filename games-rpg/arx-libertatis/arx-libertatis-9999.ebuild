@@ -4,7 +4,7 @@ EGIT_REPO_URI="git://github.com/arx/ArxLibertatis.git"
 
 inherit eutils games cmake-utils git-2
 
-DESCRIPTION="Cross-platform port of Arx Fatails"
+DESCRIPTION="Cross-platform port of Arx Fatalis, a first-person role-playing game"
 HOMEPAGE="http://arx-libertatis.org/"
 SRC_URI=""
 
@@ -37,6 +37,8 @@ src_configure() {
 		$(cmake-utils_use tools BUILD_TOOLS)
 		$(cmake-utils_use crash-reporter BUILD_CRASHREPORTER)
 		"-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}"
+		"-DICON_DIR=/usr/share/pixmaps"
+		"-DAPPLICATION_DIR=/usr/share/applications"
 	)
 	
 	if use debug ; then

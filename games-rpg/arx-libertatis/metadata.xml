@@ -5,7 +5,7 @@
 		<email>daniel@constexpr.org</email>
 		<name>Daniel Scharrer</name>
 	</maintainer>
-	<longdescription>Cross-platform port of the GPLed Arx Fatalis sources to Linux, OpenGL, OpenAL and SDL. This package only includes the game executable - you will also need the data files from the original game.</longdescription>
+	<longdescription>Cross-platform port of Arx Fatalis, a first-person role-playing game. This package only includes the game executable - you will also need the data files from the original game.</longdescription>
 	<use>
 		<flag name='debug'>Enable asserts and debug logging and disable optimizations.</flag>
 		<flag name='crash-reporter'>Build a <pkg>x11-libs/qt-gui</pkg>-based tool that allows to submit crash information to the upstream backtracker.</flag>
