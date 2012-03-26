@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org> innoextract-1.0.ebuild,
+  innoextract-1.1.ebuild, innoextract-9999.ebuild:
+  Fix homepage URL.
+
 *innoextract-1.1 (19 Mar 2012)
 
   19 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org> +innoextract-1.1.ebuild:
