@@ -4,6 +4,10 @@
 
   28 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org>
   arx-libertatis-9999.ebuild:
+  Install ARX_PUBLIC_LICENSE.txt.
+
+  28 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  arx-libertatis-9999.ebuild:
   Fix man install dir and specify versions for more dependencies.
 
   26 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org>

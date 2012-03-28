@@ -49,7 +49,7 @@ src_configure() {
 
 src_install() {
 	cmake-utils_src_install
-	dodoc README.md AUTHORS CHANGELOG
+	dodoc README.md AUTHORS CHANGELOG ARX_PUBLIC_LICENSE.txt
 	prepgamesdirs
 }
 
