@@ -14,12 +14,12 @@ KEYWORDS=""
 IUSE="+debug +unity-build +crash-reporter tools"
 
 ARX_DEPEND="\
-	<media-libs/libsdl-1.3[opengl]
+	media-libs/libsdl[opengl]
 	media-libs/devil[jpeg]
 	media-libs/openal
-	media-libs/freetype
+	>=media-libs/freetype-2
 	sys-libs/zlib
-	dev-libs/boost
+	>=dev-libs/boost-1.39
 	media-libs/glew
 	virtual/opengl
 	crash-reporter? ( x11-libs/qt-core[ssl] x11-libs/qt-gui )"
@@ -37,8 +37,7 @@ src_configure() {
 		$(cmake-utils_use tools BUILD_TOOLS)
 		$(cmake-utils_use crash-reporter BUILD_CRASHREPORTER)
 		"-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}"
-		"-DICON_DIR=/usr/share/pixmaps"
-		"-DAPPLICATION_DIR=/usr/share/applications"
+		"-DCMAKE_INSTALL_DATAROOTDIR=/usr/share"
 	)
 	
 	if use debug ; then
@@ -58,6 +57,7 @@ pkg_postinst() {
 	
 	elog "This package only installs the game binary."
 	elog "You will also need the demo or full game data."
+	elog "See http://wiki.arx-libertatis.org/Getting_the_game_data for more information."
 	
 	games_pkg_postinst
 }
