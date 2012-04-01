@@ -17,7 +17,7 @@ ARX_DEPEND="\
 	media-libs/libsdl[opengl]
 	media-libs/devil[jpeg]
 	media-libs/openal
-	>=media-libs/freetype-2
+	media-libs/freetype
 	sys-libs/zlib
 	>=dev-libs/boost-1.39
 	media-libs/glew
