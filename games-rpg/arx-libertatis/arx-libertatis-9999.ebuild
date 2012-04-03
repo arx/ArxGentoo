@@ -36,8 +36,8 @@ src_configure() {
 		$(cmake-utils_use unity-build UNITY_BUILD)
 		$(cmake-utils_use tools BUILD_TOOLS)
 		$(cmake-utils_use crash-reporter BUILD_CRASHREPORTER)
-		"-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}"
-		"-DCMAKE_INSTALL_DATAROOTDIR=/usr/share"
+		"-DGAMESBINDIR=${GAMES_BINDIR}"
+		"-DCMAKE_INSTALL_DATAROOTDIR=${GAMES_DATADIR_BASE}"
 	)
 	
 	if use debug ; then
