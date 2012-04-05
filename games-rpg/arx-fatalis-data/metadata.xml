@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer>
+		<email>daniel@constexpr.org</email>
+		<name>Daniel Scharrer</name>
+	</maintainer>
+	<longdescription>Data files of Arx Fatalis, a first-person role-playing game. The game can be run under linux using <pkg>games-rpg/arx-libertatis</pkg></longdescription>
+	<use>
+		<flag name='gog'>Extract the data from the GOG.com installer.</flag>
+	</use>
+</pkgmetadata>

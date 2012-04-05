@@ -29,13 +29,13 @@ pkg_nofetch() {
 }
 
 src_unpack() {
-	"${FILESDIR}/install-demo" "${DISTDIR}/${A}" "${WORKDIR}/${P}" || die "unpack failed"
+	"${FILESDIR}/install-demo" "${DISTDIR}/${A}" "${S}" || die "unpack failed"
 }
 
 src_compile() {
 	local desktop_file=`cat "${FILESDIR}/${PN}.desktop"`
 	desktop_file="${desktop_file/arx-fatalis-demo-datadir/${_arx_fatalis_demo_datadir}}"
-	echo "$desktop_file" >> "${WORKDIR}/${P}/${PN}.desktop"
+	echo "$desktop_file" >> "${S}/${PN}.desktop"
 }
 
 src_install() {
