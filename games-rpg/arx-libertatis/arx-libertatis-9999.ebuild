@@ -11,7 +11,7 @@ SRC_URI=""
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="+debug +unity-build +crash-reporter tools"
+IUSE="+debug +unity-build +crash-reporter tools data demo"
 
 ARX_DEPEND="\
 	media-libs/libsdl[opengl]
@@ -25,7 +25,9 @@ ARX_DEPEND="\
 	crash-reporter? ( x11-libs/qt-core[ssl] x11-libs/qt-gui )"
 
 RDEPEND="${ARX_DEPEND}
-	crash-reporter? ( sys-devel/gdb )"
+	crash-reporter? ( sys-devel/gdb )
+	data? ( >=games-rpg/arx-fatalis-data-1.21 )
+	demo? ( games-rpg/arx-fatalis-demo )"
 
 DEPEND="${ARX_DEPEND}"
 
