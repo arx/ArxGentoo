@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Arx Fatalis Demo
+GenericName=First-Person Role-Playing Game
+Comment=Using the cross-platform port of Arx Libertatis
+Exec=arx "--data-dir=arx-fatalis-demo-datadir"
+TryExec=arx
+Icon=arx-libertatis
+Terminal=false
+Type=Application
+Categories=Game;RolePlaying;

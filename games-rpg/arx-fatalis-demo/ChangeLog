@@ -1,0 +1,11 @@
+# ChangeLog for games-rpg/arx-fatalis-demo
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*arx-fatalis-demo-0 (05 Apr 2012)
+
+  05 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  +arx-fatalis-demo-0.ebuild, +files/data-demo.md5, +files/install-demo,
+  +metadata.xml:
+  Add ebuild for Arx Fatalis demo data.
+
