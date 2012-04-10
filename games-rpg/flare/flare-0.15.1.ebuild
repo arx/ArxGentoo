@@ -1,4 +1,4 @@
-# Copyright 2012 Gentoo Foundation
+# Copyright 2012-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -13,7 +13,8 @@ DESCRIPTION="Free/Libre Action Roleplaying Engine"
 HOMEPAGE="http://clintbellanger.net/rpg/"
 SRC_URI="mirror://github/clintbellanger/${PN}/${MY_P}.tar.gz"
 
-LICENSE="GPL-3 CC-BY-SA-3.0-Unported"
+# Code is GPL, assets are CC-BY-SA
+LICENSE="GPL-3 CCPL-Attribution-ShareAlike-3.0"
 SLOT="0"
 KEYWORDS="
 	~alpha

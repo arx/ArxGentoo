@@ -3,6 +3,9 @@
 # $Header: $
 
   10 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> flare-0.15.1.ebuild:
+  Use the proper license names.
+
+  10 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> flare-0.15.1.ebuild:
   Mark as stable for x86 and amd64.
 
 *flare-0.15.1 (10 Apr 2012)
