@@ -1,3 +1,6 @@
+# Copyright 2012 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
 
 EAPI="2"
 EGIT_REPO_URI="git://github.com/arx/ArxLibertatis.git"
@@ -13,7 +16,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE="+debug +unity-build +crash-reporter tools data demo"
 
-ARX_DEPEND="\
+ARX_DEPEND="
 	media-libs/libsdl[opengl]
 	media-libs/devil[jpeg]
 	media-libs/openal
@@ -22,17 +25,22 @@ ARX_DEPEND="\
 	>=dev-libs/boost-1.39
 	media-libs/glew
 	virtual/opengl
-	crash-reporter? ( x11-libs/qt-core[ssl] x11-libs/qt-gui )"
+	crash-reporter? ( x11-libs/qt-core[ssl] x11-libs/qt-gui )
+"
 
-RDEPEND="${ARX_DEPEND}
+RDEPEND="
+	${ARX_DEPEND}
 	crash-reporter? ( sys-devel/gdb )
 	data? ( >=games-rpg/arx-fatalis-data-1.21 )
-	demo? ( games-rpg/arx-fatalis-demo )"
+	demo? ( games-rpg/arx-fatalis-demo )
+"
 
 DEPEND="${ARX_DEPEND}"
 
+DOCS=( README.md AUTHORS CHANGELOG ARX_PUBLIC_LICENSE.txt )
+
 src_configure() {
-	
+
 	local mycmakeargs
 	mycmakeargs+=(
 		$(cmake-utils_use unity-build UNITY_BUILD)
@@ -41,25 +49,24 @@ src_configure() {
 		"-DGAMESBINDIR=${GAMES_BINDIR}"
 		"-DCMAKE_INSTALL_DATAROOTDIR=${GAMES_DATADIR_BASE}"
 	)
-	
+
 	if use debug ; then
 		CMAKE_BUILD_TYPE=Debug
 	fi
-	
+
 	cmake-utils_src_configure || die
 }
 
 src_install() {
 	cmake-utils_src_install
-	dodoc README.md AUTHORS CHANGELOG ARX_PUBLIC_LICENSE.txt
 	prepgamesdirs
 }
 
 pkg_postinst() {
-	
+
 	elog "This package only installs the game binary."
 	elog "You will also need the demo or full game data."
 	elog "See http://wiki.arx-libertatis.org/Getting_the_game_data for more information."
-	
+
 	games_pkg_postinst
 }
