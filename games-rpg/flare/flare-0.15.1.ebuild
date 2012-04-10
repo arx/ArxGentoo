@@ -14,7 +14,7 @@ LICENSE="GPL-3 CC-BY-SA-3.0-Unported"
 SLOT="0"
 KEYWORDS="\
 	~alpha
-	~amd64
+	amd64
 	~amd64-fbsd
 	~arm
 	~hppa
@@ -26,7 +26,7 @@ KEYWORDS="\
 	~sh
 	~sparc
 	~sparc-fbsd
-	~x86
+	x86
 	~x86-fbsd"
 IUSE=""
 
