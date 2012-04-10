@@ -28,7 +28,7 @@ Overlays added using layman won't be updated by `emerge --fetch`, you need to ru
 * games-rpg/arx-fatalis-data: [Arx Fatalis data](http://www.arkane-studios.com/uk/arx.php)
 * games-rpg/arx-fatalis-demo: [Arx Fatalis demo](http://www.arkane-studios.com/uk/arx.php)
 * games-rpg/arx-libertatis: [Cross-platform port of Arx Fatalis, a first-person role-playing game](http://arx-libertatis.org/)
-* games-rpg/flare: [Free/Libre Action Roleplaying Engine](Free/Libre Action Roleplaying Engine)
+* games-rpg/flare: [Free/Libre Action Roleplaying Engine](http://clintbellanger.net/rpg/)
 
 ## Contact
 
