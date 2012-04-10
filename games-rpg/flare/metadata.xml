@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer>
+		<email>daniel@constexpr.org</email>
+		<name>Daniel Scharrer</name>
+	</maintainer>
+	<longdescription>Flare (Free Libre Action Roleplaying Engine) is a simple game engine built to handle a very specific kind of game: single-player 2D action RPGs. Flare is not a reimplementation of an existing game or engine. It is a tribute to and exploration of the action RPG genre.</longdescription>
+	<upstream>
+		<bugs-to>https://github.com/clintbellanger/flare/issues</bugs-to>
+	</upstream>
+</pkgmetadata>
