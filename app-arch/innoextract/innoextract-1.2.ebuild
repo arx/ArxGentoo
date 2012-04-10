@@ -10,7 +10,22 @@ mirror://sourceforge/innoextract/${P}.tar.gz"
 
 LICENSE="ZLIB"
 SLOT="0"
-KEYWORDS="x86 amd64"
+KEYWORDS="\
+	~alpha
+	amd64
+	~amd64-fbsd
+	~arm
+	~hppa
+	~ia64
+	~mips
+	~ppc
+	~ppc64
+	~s390
+	~sh
+	~sparc
+	~sparc-fbsd
+	x86
+	~x86-fbsd"
 IUSE="debug +lzma"
 
 RDEPEND=">=dev-libs/boost-1.37

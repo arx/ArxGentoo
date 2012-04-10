@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> innoextract-1.2.ebuild:
+  Add more unstable keywords.
+
   10 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> innoextract-1.2.ebuild,
   innoextract-9999.ebuild:
   Improve description.
