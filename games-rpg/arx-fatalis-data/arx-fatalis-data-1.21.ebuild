@@ -1,3 +1,6 @@
+# Copyright 2012 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
 
 EAPI="2"
 
@@ -6,12 +9,15 @@ inherit eutils cdrom games
 
 DESCRIPTION="Arx Fatalis data"
 HOMEPAGE="http://www.arkane-studios.com/uk/arx.php"
-SRC_URI="gog? ( setup_arx_fatalis.exe )
-cdinstall? ( http://download.zenimax.com/arxfatalis/patches/1.21/ArxFatalis_1.21_MULTILANG.exe )"
+SRC_URI="
+	gog? ( setup_arx_fatalis.exe )
+	cdinstall? ( http://download.zenimax.com/arxfatalis/patches/1.21/ArxFatalis_1.21_MULTILANG.exe )
+"
 
-LICENSE="\
+LICENSE="
 	gog? ( ArxFatalis-EULA-GOG.com )
-	cdinstall? ( ArxFatalis-EULA-JoWooD )"
+	cdinstall? ( ArxFatalis-EULA-JoWooD )
+"
 SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE="cdinstall gog"
@@ -19,11 +25,12 @@ RESTRICT="mirror gog? ( fetch )"
 
 RDEPEND=""
 
-DEPEND="\
+DEPEND="
 	gog? ( app-arch/innoextract )
-	cdinstall? ( app-arch/cabextract app-arch/innoextract )"
+	cdinstall? ( app-arch/cabextract app-arch/innoextract )
+"
 
-_arx_fatalis_datadir="${GAMES_DATADIR}/arx"
+MY_DATADIR="${GAMES_DATADIR}/arx"
 
 pkg_nofetch() {
 	einfo "Please download ${A} and put it into ${DISTDIR}."
@@ -43,15 +50,15 @@ src_unpack() {
 	if [ $todo = 1 ] ; then
 		if [ "${ARX_FATALIS_DIR}" != "" ]
 			then local _srcdir="${ARX_FATALIS_DIR}"
-			else if [ -f "${_arx_fatalis_datadir}/data.pak" ]
-				then local _srcdir="${_arx_fatalis_datadir}"
+			else if [ -f "${MY_DATADIR}/data.pak" ]
+				then local _srcdir="${MY_DATADIR}"
 				else
 					eerror "You need either set ARX_FATALIS_DIR to point to an existing Arx Fatalis"
 					eerror "installation or use the gog or cdinstall use flags:"
 					eerror "  export ARX_FATALIS_DIR=/path/to/arx"
 					eerror "This is only needed for the first install - after that the game data will"
 					eerror "be copied from existing installs unless specified otherwise."
-					die "Could not find game data." 
+					die "Could not find game data."
 			fi
 		fi
 		"${FILESDIR}/install-copy" "${_srcdir}" "${S}" || die "unpack failed"
@@ -59,9 +66,9 @@ src_unpack() {
 }
 
 src_install() {
-	
-	insinto "${_arx_fatalis_datadir}"
+
+	insinto "${MY_DATADIR}"
 	doins -r * || die "doins failed"
-	
+
 	prepgamesdirs
 }
