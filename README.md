@@ -1,39 +1,39 @@
 # ArxGentoo - Arx Libertatis gentoo overlay
 
-This is a gentoo overlay that can be used with layman to install [Arx Libertatis](http://arx-libertatis.org/) under [Gentoo Linux](http://www.gentoo.org/).
+This is a gentoo overlay that can be used with layman to install [Arx Libertatis](http://arx-libertatis.org/) and other software under [Gentoo Linux](http://www.gentoo.org/).
 
-Refer to the [Wiki](http://arx.parpg.net/) on how to install Arx Libertatis [under other linux distributions](http://arx.parpg.net/Downloading_and_Compiling_under_Linux) or [under windows](http://arx.parpg.net/Downloading_and_Compiling_under_Windows)
+Refer to the [Wiki](http://wiki.arx-libertatis.org/) on how to install Arx Libertatis [under other Linux distributions or Windows](http://wiki.arx-libertatis.org/Download_and_installation).
 
 ## Installing
 
 You will need [layman](http://layman.sourceforge.net/) with **git** support, so install that first if you don't have it already:
 
-    echo "app-portage/layman git" >> /etc/portage/package.use
-    emerge -N app-portage/layman
+    emerge app-portage/layman[git]
 
-Next, you need to add the **arx-libertatis** overlay that contains the arx ebuild.
+Next, to add this overlay run:
 
-    layman -f
-    layman -a arx-libertatis
+    layman -f -a arx-libertatis
 
-For now, there is only a live ebuild: this will compile and install the current ArxLibertatis git master. Like most gentoo live ebuilds, **games-rpg/arx-libertatis** needs to be unmasked before you can istall it:
+You can then install the packages using emerge.
 
-    echo "games-rpg/arx-libertatis **" >> /etc/portage/package.keywords
-    emerge games-rpg/arx-libertatis
-
-This will install `/usr/games/bin/arx`. Remember that you need to be in the games group to run games under gentoo.
-Updating
+## Updating
 
 Overlays added using layman won't be updated by `emerge --fetch`, you need to run
 
     layman -S
 
-As `games-rpg/arx-libertatis-9999` is a live ebuild, it won't be updated automatically (the version never changes), you need to manually re-emerge it.
+## Packages
 
-Also see the [wiki page on installing Arx Libertatis under Linux](http://arx.parpg.net/Downloading_and_Compiling_under_Linux#Gentoo_Linux)
+* app-arch/innoextract: [A tool to unpack installers created by Inno Setup](http://innoextract.constexpr.org/)
+* games-rpg/arx-fatalis-data: [Arx Fatalis data](http://www.arkane-studios.com/uk/arx.php)
+* games-rpg/arx-fatalis-demo: [Arx Fatalis demo](http://www.arkane-studios.com/uk/arx.php)
+* games-rpg/arx-libertatis: [Cross-platform port of Arx Fatalis, a first-person role-playing game](http://arx-libertatis.org/)
+* games-rpg/flare: [Free/Libre Action Roleplaying Engine](Free/Libre Action Roleplaying Engine)
 
 ## Contact
 
 IRC: \#arxfatalis on irc.freenode.net
 
 Website: [http://arx-libertatis.org/](http://arx-libertatis.org/)
+
+Repository maintainer: [Daniel Scharrer](http://constexpr.org/)
