@@ -1,3 +1,6 @@
+# Copyright 2012 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
 
 EAPI="2"
 
@@ -13,14 +16,14 @@ KEYWORDS=""
 IUSE=""
 RESTRICT="fetch"
 
-RDEPEND="\
-	games-rpg/arx-libertatis"
+RDEPEND="games-rpg/arx-libertatis"
 
-DEPEND="\
+DEPEND="
 	app-arch/cabextract
-	|| ( app-arch/unzip app-arch/libarchive )"
+	|| ( app-arch/unzip app-arch/libarchive )
+"
 
-_arx_fatalis_demo_datadir="${GAMES_DATADIR}/${PN}"
+MY_DATADIR="${GAMES_DATADIR}/${PN}"
 
 pkg_nofetch() {
 	einfo "Please find and download ${SRC_URI} and put it into ${DISTDIR}."
@@ -34,17 +37,17 @@ src_unpack() {
 
 src_compile() {
 	local desktop_file=`cat "${FILESDIR}/${PN}.desktop"`
-	desktop_file="${desktop_file/arx-fatalis-demo-datadir/${_arx_fatalis_demo_datadir}}"
+	desktop_file="${desktop_file/arx-fatalis-demo-datadir/${MY_DATADIR}}"
 	echo "$desktop_file" >> "${S}/${PN}.desktop"
 }
 
 src_install() {
-	
-	insinto "${_arx_fatalis_demo_datadir}"
+
+	insinto "${MY_DATADIR}"
 	doins -r *.pak misc || die "doins failed"
-	
+
 	insinto "/usr/share/applications"
 	doins "${PN}.desktop" || die "doins failed"
-	
+
 	prepgamesdirs
 }
