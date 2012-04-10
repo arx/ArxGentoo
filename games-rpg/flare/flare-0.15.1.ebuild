@@ -1,3 +1,6 @@
+# Copyright 2012 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
 
 EAPI="2"
 
@@ -12,7 +15,7 @@ SRC_URI="mirror://github/clintbellanger/${PN}/${MY_P}.tar.gz"
 
 LICENSE="GPL-3 CC-BY-SA-3.0-Unported"
 SLOT="0"
-KEYWORDS="\
+KEYWORDS="
 	~alpha
 	amd64
 	~amd64-fbsd
@@ -27,10 +30,11 @@ KEYWORDS="\
 	~sparc
 	~sparc-fbsd
 	x86
-	~x86-fbsd"
+	~x86-fbsd
+"
 IUSE=""
 
-FLARE_DEPEND="\
+MY_DEPEND="
 	media-libs/libsdl[X,joystick]
 	|| (
 		media-libs/libsdl[alsa]
@@ -40,26 +44,28 @@ FLARE_DEPEND="\
 	)
 	media-libs/sdl-image[png]
 	media-libs/sdl-mixer[vorbis]
-	media-libs/sdl-ttf"
+	media-libs/sdl-ttf
+"
 
-RDEPEND="${FLARE_DEPEND}"
+RDEPEND="${MY_DEPEND}"
 
-DEPEND="${FLARE_DEPEND}"
+DEPEND="${MY_DEPEND}"
+
+DOCS=( README )
 
 S="${WORKDIR}/${MY_P}"
 
 src_configure() {
-	
+
 	local mycmakeargs
 	mycmakeargs+=(
 		"-DBINDIR=games/bin"
 	)
-	
+
 	cmake-utils_src_configure || die
 }
 
 src_install() {
 	cmake-utils_src_install
-	dodoc README
 	prepgamesdirs
 }
