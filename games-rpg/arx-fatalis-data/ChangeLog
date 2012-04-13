@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> +files/data-it.md5,
+  files/install-cd, files/install-copy:
+  Add support for italian data files.
+
   09 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> files/install-cd,
   files/install-copy:
   Support .pak files with a _default suffix.
