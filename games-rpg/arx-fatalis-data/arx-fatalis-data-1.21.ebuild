@@ -1,4 +1,4 @@
-# Copyright 2012 Gentoo Foundation
+# Copyright 2012-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -71,4 +71,15 @@ src_install() {
 	doins -r * || die "doins failed"
 
 	prepgamesdirs
+}
+
+pkg_postinst() {
+
+	if use cdinstall || use gog ; then
+		elog Now that the Arx Fatalis data has been installed you can remove the cdinstall
+		elog and gog use flags. This package will try to use existing installed data if
+		elog no use flags are set and ARX_FATALIS_DIR is not defined.
+	fi
+
+	games_pkg_postinst
 }
