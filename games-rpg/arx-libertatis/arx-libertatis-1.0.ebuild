@@ -2,18 +2,19 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="2"
-EGIT_REPO_URI="git://github.com/arx/ArxLibertatis.git"
+EAPI="3"
 
-inherit eutils games cmake-utils git-2
+inherit eutils games cmake-utils
 
 DESCRIPTION="Cross-platform port of Arx Fatalis, a first-person role-playing game"
 HOMEPAGE="http://arx-libertatis.org/"
-SRC_URI=""
+SRC_URI="
+	mirror://github/arx/ArxLibertatis/${P}.tar.xz
+"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="-* ~amd64 ~x86"
 IUSE="debug +unity-build +crash-reporter tools data demo"
 
 ARX_DEPEND="

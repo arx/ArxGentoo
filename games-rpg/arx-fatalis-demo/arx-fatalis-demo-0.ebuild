@@ -12,7 +12,7 @@ SRC_URI="arx_demo_english.zip"
 
 LICENSE="ArxFatalisDemo"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 RESTRICT="fetch"
 
