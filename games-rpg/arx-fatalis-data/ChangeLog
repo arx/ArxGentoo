@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> files/install-cd,
+  files/install-copy, files/install-gog, files/install-verify:
+  Update install scripts from Arx Libertatis: Make sure the CWD is valid before
+  calling find or it might fail in a sandboxed environment.
+
   19 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> +files/install-verify,
   -files/install-common, files/install-cd, files/install-copy,
   files/install-gog:
