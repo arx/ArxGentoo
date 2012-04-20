@@ -1,5 +1,13 @@
 # ArxGentoo - Arx Libertatis gentoo overlay
 
+Please only use the `issues` tab here for problems with the ebuilds.
+
+Bugs in the software itself should go to the upstream bug trackers:
+
+* app-arch/innoextract: [innoextract.constexpr.org/issues](http://innoextract.constexpr.org/issues)
+* games-rpg/arx-libertatis: [bugs.arx-libertatis.org](https://bugs.arx-libertatis.org/)
+* games-rpg/flare: [github.com/clintbellanger/flare/issues](https://github.com/clintbellanger/flare/issues)
+
 This is a gentoo overlay that can be used with layman to install [Arx Libertatis](http://arx-libertatis.org/) and other software under [Gentoo Linux](http://www.gentoo.org/).
 
 Refer to the [Wiki](http://wiki.arx-libertatis.org/) on how to install Arx Libertatis [under other Linux distributions or Windows](http://wiki.arx-libertatis.org/Download_and_installation).
