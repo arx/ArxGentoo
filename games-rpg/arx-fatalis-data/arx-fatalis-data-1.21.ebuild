@@ -33,7 +33,8 @@ DEPEND="
 MY_DATADIR="${GAMES_DATADIR}/arx"
 
 pkg_nofetch() {
-	einfo "Please download ${A} and put it into ${DISTDIR}."
+	einfo "Please download ${A} from you GOG.com account after buying Arx Fatalis"
+	einfo "and put it into ${DISTDIR}."
 }
 
 src_unpack() {
