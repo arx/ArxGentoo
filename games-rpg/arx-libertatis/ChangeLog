@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  arx-libertatis-1.0.ebuild, arx-libertatis-1.0.1.ebuild:
+  Add amd64 and x86 keywords
+
 *arx-libertatis-1.0.1 (22 Apr 2012)
 
   22 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
