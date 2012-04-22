@@ -10,6 +10,7 @@ DESCRIPTION="Cross-platform port of Arx Fatalis, a first-person role-playing gam
 HOMEPAGE="http://arx-libertatis.org/"
 SRC_URI="
 	mirror://github/arx/ArxLibertatis/${P}.tar.xz
+	mirror://sourceforge/arx/${P}/${P}.tar.xz
 "
 
 LICENSE="GPL-3"

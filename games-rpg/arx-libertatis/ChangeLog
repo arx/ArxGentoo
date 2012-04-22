@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  arx-libertatis-1.0.ebuild:
+  Add sourceforge mirror for version 1.0.
+
   19 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
   arx-libertatis-1.0.ebuild:
   Keyword amd64 x86
