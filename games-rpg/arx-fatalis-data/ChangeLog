@@ -2,42 +2,42 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-  21 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> files/install-verify:
+  21 Apr 2012; Daniel Scharrer <daniel@constexpr.org> files/install-verify:
   Don't fail if both speech.pak and speech_default.pak exist in the source data
 
-  19 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> files/install-cd,
+  19 Apr 2012; Daniel Scharrer <daniel@constexpr.org> files/install-cd,
   files/install-copy, files/install-gog, files/install-verify:
   Update install scripts from Arx Libertatis: Make sure the CWD is valid before
   calling find or it might fail in a sandboxed environment.
 
-  19 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> +files/install-verify,
+  19 Apr 2012; Daniel Scharrer <daniel@constexpr.org> +files/install-verify,
   -files/install-common, files/install-cd, files/install-copy,
   files/install-gog:
   Update install scripts from Arx Libertatis: support both variants of data.pak
   for all localisations.
 
-  14 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  14 Apr 2012; Daniel Scharrer <daniel@constexpr.org>
   arx-fatalis-data-1.21.ebuild, +files/install-common, -files/data-de.md5,
   -files/data-en.md5, -files/data-es.md5, -files/data-fr.md5,
   -files/data-it.md5, -files/data-ru.md5, files/install-cd, files/install-copy,
   files/install-gog:
   Update install scripts from Arx Libertatis.
 
-  13 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> +files/data-it.md5,
+  13 Apr 2012; Daniel Scharrer <daniel@constexpr.org> +files/data-it.md5,
   files/install-cd, files/install-copy:
   Add support for italian data files.
 
-  09 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> files/install-cd,
+  09 Apr 2012; Daniel Scharrer <daniel@constexpr.org> files/install-cd,
   files/install-copy:
   Support .pak files with a _default suffix.
 
-  08 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> files/install-cd,
+  08 Apr 2012; Daniel Scharrer <daniel@constexpr.org> files/install-cd,
   files/install-copy:
   Mirror changes to install scripts.
 
 *arx-fatalis-data-1.21 (05 Apr 2012)
 
-  05 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  05 Apr 2012; Daniel Scharrer <daniel@constexpr.org>
   +arx-fatalis-data-1.21.ebuild, +files/data-de.md5, +files/data-en.md5,
   +files/install-cd, +files/install-copy, +files/install-gog, +metadata.xml:
   Add ebuild for Arx Fatalis data.

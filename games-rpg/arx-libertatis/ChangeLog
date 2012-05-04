@@ -2,13 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-  22 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  22 Apr 2012; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-1.0.ebuild, arx-libertatis-1.0.1.ebuild:
   Add amd64 and x86 keywords
 
 *arx-libertatis-1.0.1 (22 Apr 2012)
 
-  22 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  22 Apr 2012; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-1.0.ebuild, +arx-libertatis-1.0.1.ebuild:
   Bump version to 1.0.1
   - Fixed garbled text rendering in the Russian version (upstream bug #226)
@@ -17,49 +17,49 @@
   - Loading files from the 'graph' and 'misc' directories is now
   case-insensitive
 
-  22 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  22 Apr 2012; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-1.0.ebuild:
   Add sourceforge mirror for version 1.0.
 
-  19 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  19 Apr 2012; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-1.0.ebuild:
   Keyword amd64 x86
 
 *arx-libertatis-1.0 (19 Apr 2012)
 
-  19 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  19 Apr 2012; Daniel Scharrer <daniel@constexpr.org>
   +arx-libertatis-1.0.ebuild, arx-libertatis-9999.ebuild:
   Release version 1.0
 
-  05 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  05 Apr 2012; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-9999.ebuild, metadata.xml:
   Add data and demo use flags.
 
-  03 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  03 Apr 2012; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-9999.ebuild:
   Don't install arxunpak, arxsavetool and arxcrashreporter under /usr/games.
 
-  28 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  28 Mar 2012; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-9999.ebuild:
   Install ARX_PUBLIC_LICENSE.txt.
 
-  28 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  28 Mar 2012; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-9999.ebuild:
   Fix man install dir and specify versions for more dependencies.
 
-  26 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  26 Mar 2012; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-9999.ebuild, metadata.xml:
   Fix icon and desktop file location.
 
-  23 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  23 Mar 2012; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-9999.ebuild:
   Install the CHANGELOG file.
 
-  22 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  22 Mar 2012; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-9999.ebuild, metadata.xml:
   Add a crash-reporter use flag.
 
-  01 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  01 Mar 2012; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-9999.ebuild:
   Install the README.md and AUTHORS files.
 

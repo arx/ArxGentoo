@@ -2,20 +2,20 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-  19 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  19 Apr 2012; Daniel Scharrer <daniel@constexpr.org>
   arx-fatalis-demo-0.ebuild:
   Keyword amd64 x86
 
-  19 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> files/install-demo:
+  19 Apr 2012; Daniel Scharrer <daniel@constexpr.org> files/install-demo:
   Update install scripts from Arx Libertatis
 
-  14 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> -files/data-demo.md5,
+  14 Apr 2012; Daniel Scharrer <daniel@constexpr.org> -files/data-demo.md5,
   files/install-demo:
   Update install-demo script from upstream.
 
 *arx-fatalis-demo-0 (05 Apr 2012)
 
-  05 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  05 Apr 2012; Daniel Scharrer <daniel@constexpr.org>
   +arx-fatalis-demo-0.ebuild, +files/data-demo.md5, +files/install-demo,
   +metadata.xml:
   Add ebuild for Arx Fatalis demo data.

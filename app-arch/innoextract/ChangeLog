@@ -2,43 +2,43 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-  10 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> innoextract-1.2.ebuild:
+  10 Apr 2012; Daniel Scharrer <daniel@constexpr.org> innoextract-1.2.ebuild:
   Add more unstable keywords.
 
-  10 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> innoextract-1.2.ebuild,
+  10 Apr 2012; Daniel Scharrer <daniel@constexpr.org> innoextract-1.2.ebuild,
   innoextract-9999.ebuild:
   Improve description.
 
-  10 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> -innoextract-1.0.ebuild,
+  10 Apr 2012; Daniel Scharrer <daniel@constexpr.org> -innoextract-1.0.ebuild,
   -innoextract-1.1.ebuild:
   Remove versions 1.0 and 1.1.
 
 *innoextract-1.2 (01 Apr 2012)
 
-  01 Apr 2012; Daniel Scharrer <dscharrer@gentoo.org> +innoextract-1.2.ebuild:
+  01 Apr 2012; Daniel Scharrer <daniel@constexpr.org> +innoextract-1.2.ebuild:
   Bump version number to 1.2.
 
-  26 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org> innoextract-1.0.ebuild,
+  26 Mar 2012; Daniel Scharrer <daniel@constexpr.org> innoextract-1.0.ebuild,
   innoextract-1.1.ebuild, innoextract-9999.ebuild:
   Fix homepage URL.
 
 *innoextract-1.1 (19 Mar 2012)
 
-  19 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org> +innoextract-1.1.ebuild:
+  19 Mar 2012; Daniel Scharrer <daniel@constexpr.org> +innoextract-1.1.ebuild:
   Add version 1.1 ebuild.
 
-  09 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org> innoextract-1.0.ebuild:
+  09 Mar 2012; Daniel Scharrer <daniel@constexpr.org> innoextract-1.0.ebuild:
   Fix github download URL.
 
 *innoextract-1.0 (02 Mar 2012)
 
-  02 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org> +innoextract-1.0.ebuild,
+  02 Mar 2012; Daniel Scharrer <daniel@constexpr.org> +innoextract-1.0.ebuild,
   innoextract-9999.ebuild, metadata.xml:
   Add ebuild for version 1.0.
 
 *innoextract-9999 (01 Mar 2012)
 
-  01 Mar 2012; Daniel Scharrer <dscharrer@gentoo.org> +innoextract-9999.ebuild,
+  01 Mar 2012; Daniel Scharrer <daniel@constexpr.org> +innoextract-9999.ebuild,
   +metadata.xml:
   Add initial Inno Extract live ebuild.
 
