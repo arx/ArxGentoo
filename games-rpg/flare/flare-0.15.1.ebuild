@@ -19,7 +19,6 @@ SLOT="0"
 KEYWORDS="
 	~alpha
 	amd64
-	~amd64-fbsd
 	~arm
 	~hppa
 	~ia64
@@ -29,9 +28,7 @@ KEYWORDS="
 	~s390
 	~sh
 	~sparc
-	~sparc-fbsd
 	x86
-	~x86-fbsd
 "
 IUSE=""
 
