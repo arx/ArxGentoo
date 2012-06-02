@@ -1,0 +1,22 @@
+media-libs/libsdl[opengl] media-libs/devil[jpeg] media-libs/openal media-libs/freetype sys-libs/zlib >=dev-libs/boost-1.39 media-libs/glew virtual/opengl crash-reporter? ( x11-libs/qt-core[ssl] x11-libs/qt-gui ) >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) dev-vcs/git
+media-libs/libsdl[opengl] media-libs/devil[jpeg] media-libs/openal media-libs/freetype sys-libs/zlib >=dev-libs/boost-1.39 media-libs/glew virtual/opengl crash-reporter? ( x11-libs/qt-core[ssl] x11-libs/qt-gui ) crash-reporter? ( sys-devel/gdb ) data? ( >=games-rpg/arx-fatalis-data-1.21 ) demo? ( games-rpg/arx-fatalis-demo )
+0
+
+
+http://arx-libertatis.org/
+GPL-3
+Cross-platform port of Arx Fatalis, a first-person role-playing game
+
+base cmake-utils eutils flag-o-matic games git-2 multilib toolchain-funcs user
+debug +unity-build +crash-reporter tools data demo
+
+
+
+2
+
+compile configure install postinst preinst prepare setup test unpack
+
+
+
+
+

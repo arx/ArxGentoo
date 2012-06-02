@@ -1,0 +1,22 @@
+>=dev-libs/boost-1.37 lzma? ( app-arch/xz-utils ) >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) dev-vcs/git
+>=dev-libs/boost-1.37 lzma? ( app-arch/xz-utils )
+0
+
+
+http://innoextract.constexpr.org/
+ZLIB
+A tool to unpack installers created by Inno Setup
+
+base cmake-utils eutils flag-o-matic git-2 multilib toolchain-funcs user
++debug +lzma
+
+
+
+2
+
+compile configure install prepare test unpack
+
+
+
+
+

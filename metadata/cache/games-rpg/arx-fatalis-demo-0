@@ -1,0 +1,22 @@
+app-arch/cabextract || ( app-arch/unzip app-arch/libarchive )
+games-rpg/arx-libertatis
+0
+arx_demo_english.zip
+fetch
+http://www.arkane-studios.com/uk/arx.php
+ArxFatalisDemo
+Arx Fatalis demo
+amd64 x86
+base eutils games multilib toolchain-funcs user
+
+
+
+
+2
+
+compile configure install nofetch postinst preinst prepare setup unpack
+
+
+
+
+
