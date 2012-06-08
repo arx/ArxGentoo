@@ -10,3 +10,11 @@ overlay="$(readlink -f "$here/../../")"
 echo "Updating use flag cache for overlay $overlay ..."
 egencache --update-use-local-desc --repo=arx-libertatis --portdir-overlay="$overlay"
 egencache --update --repo=arx-libertatis --portdir-overlay="$overlay"
+
+esc=`echo -e '\033'`
+
+# Prevent commit if there untracked files that are not in .gitignore
+untracked=`git status -u | grep '^# Untracked files:$'`
+if [ "$untracked" != "" ] ; then
+	git status ; echo "${esc}[31;1mAdd untracked files first!${esc}[0m" ; exit 1
+fi
