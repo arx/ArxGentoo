@@ -1,0 +1,12 @@
+#!/bin/sh
+
+there="$(pwd)"
+cd "$(dirname "$0")"
+here="$(pwd)"
+cd "$there"
+
+overlay="$(readlink -f "$here/../../")"
+
+echo "Updating use flag cache for overlay $overlay ..."
+egencache --update-use-local-desc --repo=arx-libertatis --portdir-overlay="$overlay"
+egencache --update --repo=arx-libertatis --portdir-overlay="$overlay"
