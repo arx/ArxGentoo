@@ -8,7 +8,10 @@ inherit eutils games cmake-utils
 
 DESCRIPTION="Cross-platform port of Arx Fatalis, a first-person role-playing game"
 HOMEPAGE="http://arx-libertatis.org/"
-SRC_URI="mirror://sourceforge/arx/${P}/${P}.tar.xz"
+SRC_URI="
+	mirror://github/arx/ArxLibertatis/${P}.tar.xz
+	mirror://sourceforge/arx/${P}/${P}.tar.xz
+"
 
 LICENSE="GPL-3"
 SLOT="0"
