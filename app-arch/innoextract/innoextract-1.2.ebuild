@@ -47,14 +47,11 @@ DOCS=( README.md CHANGELOG )
 
 src_configure() {
 
-	local mycmakeargs
-	mycmakeargs+=(
+	local mycmakeargs=(
 		$(cmake-utils_use lzma USE_LZMA)
 	)
 
-	if use debug ; then
-		CMAKE_BUILD_TYPE=Debug
-	fi
+	use debug && CMAKE_BUILD_TYPE=Debug
 
 	cmake-utils_src_configure
 }

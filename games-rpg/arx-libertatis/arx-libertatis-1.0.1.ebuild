@@ -40,8 +40,7 @@ DOCS=( README.md AUTHORS CHANGELOG ARX_PUBLIC_LICENSE.txt )
 
 src_configure() {
 
-	local mycmakeargs
-	mycmakeargs+=(
+	local mycmakeargs=(
 		$(cmake-utils_use unity-build UNITY_BUILD)
 		$(cmake-utils_use tools BUILD_TOOLS)
 		$(cmake-utils_use crash-reporter BUILD_CRASHREPORTER)
@@ -49,9 +48,7 @@ src_configure() {
 		"-DCMAKE_INSTALL_DATAROOTDIR=${GAMES_DATADIR_BASE}"
 	)
 
-	if use debug ; then
-		CMAKE_BUILD_TYPE=Debug
-	fi
+	use debug && CMAKE_BUILD_TYPE=Debug
 
 	cmake-utils_src_configure || die
 }
@@ -64,8 +61,11 @@ src_install() {
 pkg_postinst() {
 
 	elog "This package only installs the game binary."
-	elog "You will also need the demo or full game data."
-	elog "See http://wiki.arx-libertatis.org/Getting_the_game_data for more information."
+	if ! use data && ! use demo ; then
+		elog "You will also need the demo or full game data."
+		elog "See http://wiki.arx-libertatis.org/Getting_the_game_data for more information"
+		elog "or enable either the data or demo useflag."
+	fi
 
 	games_pkg_postinst
 }
