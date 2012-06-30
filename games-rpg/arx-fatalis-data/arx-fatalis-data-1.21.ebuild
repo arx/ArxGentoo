@@ -40,12 +40,13 @@ pkg_nofetch() {
 src_unpack() {
 	local todo=1
 	if [ $todo = 1 ] && use gog ; then
-		"${FILESDIR}/install-gog" "${DISTDIR}/${A}" "${S}" || die "unpack failed"
+		"${FILESDIR}/install-gog" --no-progress "${DISTDIR}/${A}" "${S}" || die "unpack failed"
 		todo=0
 	fi
 	if [ $todo = 1 ] && use cdinstall ; then
 		cdrom_get_cds "bin/Arx.ttf"
-		"${FILESDIR}/install-cd" "${CDROM_ROOT}" "${DISTDIR}/${A}" "${S}" || die "unpack failed"
+		"${FILESDIR}/install-cd" --no-progress "${CDROM_ROOT}" "${DISTDIR}/${A}" "${S}" \
+			|| die "unpack failed"
 		todo=0
 	fi
 	if [ $todo = 1 ] ; then
