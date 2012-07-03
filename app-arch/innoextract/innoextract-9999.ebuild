@@ -8,7 +8,7 @@ EGIT_REPO_URI="git://github.com/dscharrer/InnoExtract.git"
 inherit eutils cmake-utils git-2
 
 DESCRIPTION="A tool to unpack installers created by Inno Setup"
-HOMEPAGE="http://innoextract.constexpr.org/"
+HOMEPAGE="http://constexpr.org/innoextract/"
 SRC_URI=""
 
 LICENSE="ZLIB"

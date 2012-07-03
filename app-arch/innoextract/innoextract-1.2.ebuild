@@ -7,7 +7,7 @@ EAPI="2"
 inherit eutils cmake-utils
 
 DESCRIPTION="A tool to unpack installers created by Inno Setup"
-HOMEPAGE="http://innoextract.constexpr.org/"
+HOMEPAGE="http://constexpr.org/innoextract/"
 SRC_URI="
 	mirror://github/dscharrer/InnoExtract/${P}.tar.gz
 	mirror://sourceforge/innoextract/${P}.tar.gz

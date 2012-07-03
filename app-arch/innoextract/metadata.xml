@@ -11,7 +11,7 @@
 		<flag name='lzma'>Add support for extracting lzma-compressed installers using <pkg>app-arch/xz-utils</pkg></flag>
 	</use>
 	<upstream>
-		<doc lang="en">http://innoextract.constexpr.org/wiki</doc>
+		<doc lang="en">http://constexpr.org/innoextract/</doc>
 		<bugs-to>http://innoextract.constexpr.org/issues</bugs-to>
 		<remote-id type="freshmeat">inno-extract</remote-id>
 		<remote-id type="sourceforge">innoextract</remote-id>
