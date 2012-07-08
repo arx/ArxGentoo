@@ -20,7 +20,7 @@ SRC_URI="
 # Code is GPL, assets are CC-BY-SA
 LICENSE="GPL-3 CCPL-Attribution-ShareAlike-3.0"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 MY_DEPEND="
