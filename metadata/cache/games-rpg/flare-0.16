@@ -6,7 +6,7 @@ mirror://github/clintbellanger/flare/flare_linux_v016.zip mirror://github/arx/Ar
 http://clintbellanger.net/rpg/
 GPL-3 CCPL-Attribution-ShareAlike-3.0
 Free/Libre Action Roleplaying Engine
-~amd64 ~x86
+amd64 x86
 base cmake-utils eutils flag-o-matic games multilib toolchain-funcs user versionator
 
 
