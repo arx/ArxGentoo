@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Jul 2012; Daniel Scharrer <dscharrer@gentoo.org> flare-0.16.ebuild:
+  Add flare ebuild for version 0.16 - provided by
+  Andrew N Golovkov <andrew.golovkov@gmail.com>
+
   10 Apr 2012; Daniel Scharrer <daniel@constexpr.org> flare-0.15.1.ebuild:
   Use the proper license names.
 

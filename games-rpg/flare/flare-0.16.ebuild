@@ -1,4 +1,4 @@
-# Copyright 2012-2012 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -42,8 +42,7 @@ DOCS=( README )
 S="${WORKDIR}/${MY_S}"
 
 src_configure() {
-	local mycmakeargs
-	mycmakeargs+=(
+	local mycmakeargs=(
 		"-DBINDIR=games/bin"
 	)
 	cmake-utils_src_configure || die
@@ -53,4 +52,3 @@ src_install() {
 	cmake-utils_src_install
 	prepgamesdirs
 }
-
