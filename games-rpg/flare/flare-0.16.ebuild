@@ -12,7 +12,10 @@ MY_S="${PN}_${MY_PV}"
 
 DESCRIPTION="Free/Libre Action Roleplaying Engine"
 HOMEPAGE="http://clintbellanger.net/rpg/"
-SRC_URI="mirror://github/clintbellanger/${PN}/${MY_P}.zip"
+SRC_URI="
+	mirror://github/clintbellanger/${PN}/${MY_P}.zip
+	mirror://github/arx/ArxGentoo/${MY_P}.zip
+"
 
 # Code is GPL, assets are CC-BY-SA
 LICENSE="GPL-3 CCPL-Attribution-ShareAlike-3.0"

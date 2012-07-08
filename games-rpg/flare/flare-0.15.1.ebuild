@@ -1,4 +1,4 @@
-# Copyright 2012-2012 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -11,25 +11,12 @@ MY_P="${PN}_linux_${MY_PV}"
 
 DESCRIPTION="Free/Libre Action Roleplaying Engine"
 HOMEPAGE="http://clintbellanger.net/rpg/"
-SRC_URI="mirror://github/clintbellanger/${PN}/${MY_P}.tar.gz"
+SRC_URI="mirror://github/arx/ArxGentoo/${MY_P}.tar.gz"
 
 # Code is GPL, assets are CC-BY-SA
 LICENSE="GPL-3 CCPL-Attribution-ShareAlike-3.0"
 SLOT="0"
-KEYWORDS="
-	~alpha
-	amd64
-	~arm
-	~hppa
-	~ia64
-	~mips
-	~ppc
-	~ppc64
-	~s390
-	~sh
-	~sparc
-	x86
-"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 MY_DEPEND="
@@ -54,12 +41,9 @@ DOCS=( README )
 S="${WORKDIR}/${MY_P}"
 
 src_configure() {
-
-	local mycmakeargs
-	mycmakeargs+=(
+	local mycmakeargs=(
 		"-DBINDIR=games/bin"
 	)
-
 	cmake-utils_src_configure || die
 }
 
