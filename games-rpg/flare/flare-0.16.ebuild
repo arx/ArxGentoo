@@ -11,7 +11,7 @@ MY_P="${PN}_linux_${MY_PV}"
 MY_S="${PN}_${MY_PV}"
 
 DESCRIPTION="Free/Libre Action Roleplaying Engine"
-HOMEPAGE="http://clintbellanger.net/rpg/"
+HOMEPAGE="http://flarerpg.org/"
 SRC_URI="
 	mirror://github/clintbellanger/${PN}/${MY_P}.zip
 	mirror://github/arx/ArxGentoo/${MY_P}.zip

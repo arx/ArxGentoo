@@ -10,7 +10,7 @@ MY_PV="v$(delete_version_separator 1 $(replace_version_separator 2 '_'))"
 MY_P="${PN}_linux_${MY_PV}"
 
 DESCRIPTION="Free/Libre Action Roleplaying Engine"
-HOMEPAGE="http://clintbellanger.net/rpg/"
+HOMEPAGE="http://flarerpg.org/"
 SRC_URI="mirror://github/arx/ArxGentoo/${MY_P}.tar.gz"
 
 # Code is GPL, assets are CC-BY-SA
