@@ -2,6 +2,14 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*flare-0.16-r1 (31 Jul 2012)
+
+  31 Jul 2012; Daniel Scharrer <dscharrer@gentoo.org> -flare-0.15.1.ebuild,
+  -flare-0.16.ebuild, +flare-0.16-r1.ebuild, +files/flare-0.16-build.patch:
+  Mirror changes from the hasufell overlay:
+  - Fix .desktop file to comply with the spec
+  - Respect GAMES_BINDIR and GAMES_DATADIR
+
   08 Jul 2012; Daniel Scharrer <dscharrer@gentoo.org> flare-0.16.ebuild:
   Add amd64 and x86 keywords to version 0.16
 
