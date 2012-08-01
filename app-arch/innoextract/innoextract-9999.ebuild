@@ -1,11 +1,11 @@
-# Copyright 2012 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="2"
+EAPI=4
 EGIT_REPO_URI="git://github.com/dscharrer/InnoExtract.git"
 
-inherit eutils cmake-utils git-2
+inherit cmake-utils git-2
 
 DESCRIPTION="A tool to unpack installers created by Inno Setup"
 HOMEPAGE="http://constexpr.org/innoextract/"
@@ -14,29 +14,31 @@ SRC_URI=""
 LICENSE="ZLIB"
 SLOT="0"
 KEYWORDS=""
-IUSE="+debug +lzma"
+IUSE="debug doc +lzma"
 
-MY_DEPEND="
-	>=dev-libs/boost-1.37
-	lzma? ( app-arch/xz-utils )
-"
-
-RDEPEND="${MY_DEPEND}"
-
-DEPEND="${MY_DEPEND}"
+RDEPEND=">=dev-libs/boost-1.37
+	lzma? ( app-arch/xz-utils )"
+DEPEND="${RDEPEND}
+	doc? ( app-doc/doxygen )"
 
 DOCS=( README.md CHANGELOG )
 
 src_configure() {
+	use debug && CMAKE_BUILD_TYPE=Debug
 
-	local mycmakeargs
-	mycmakeargs+=(
+	local mycmakeargs=(
 		$(cmake-utils_use lzma USE_LZMA)
 	)
 
-	if use debug ; then
-		CMAKE_BUILD_TYPE=Debug
-	fi
-
 	cmake-utils_src_configure
+}
+
+src_compile() {
+	cmake-utils_src_compile
+	use doc && cmake-utils_src_compile doc
+}
+
+src_install() {
+	cmake-utils_src_install
+	use doc && dohtml -r "${CMAKE_BUILD_DIR}"/doc/html/*
 }
