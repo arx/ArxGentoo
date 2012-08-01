@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Aug 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  arx-fatalis-data-1.21.ebuild:
+  Remove stable keywords so this package won't be preferred over the one in the
+  tree
+
   30 Jun 2012; Daniel Scharrer <dscharrer@gentoo.org> files/install-cd,
   files/install-gog, files/install-verify:
   Disable the innoextract progress bar and ignore missing .pdf files

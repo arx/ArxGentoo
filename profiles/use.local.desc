@@ -6,7 +6,6 @@ app-arch/innoextract:debug - Enable debug logging and the --debug command-line o
 app-arch/innoextract:lzma - Add support for extracting lzma-compressed installers using app-arch/xz-utils
 games-rpg/arx-fatalis-data:gog - Extract the data from the GOG.com installer.
 games-rpg/arx-libertatis:crash-reporter - Build a x11-libs/qt-gui-based tool that allows to submit crash information to the upstream backtracker.
-games-rpg/arx-libertatis:data - Install the Arx Fatalis data files. This does not change the contents of this package, it only adds a run-time dependency on games-rpg/arx-fatalis-data.
 games-rpg/arx-libertatis:debug - Enable asserts and debug logging and disable optimizations.
 games-rpg/arx-libertatis:demo - Install the Arx Fatalis demo data. This does not change the contents of this package, it only adds a run-time dependency on games-rpg/arx-fatalis-demo.
 games-rpg/arx-libertatis:tools - Build tools that can extract the game's data and save files.

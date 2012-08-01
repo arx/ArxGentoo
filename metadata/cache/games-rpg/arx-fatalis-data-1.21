@@ -6,7 +6,7 @@ mirror gog? ( fetch )
 http://www.arkane-studios.com/uk/arx.php
 gog? ( ArxFatalis-EULA-GOG.com ) cdinstall? ( ArxFatalis-EULA-JoWooD )
 Arx Fatalis data
-amd64 x86
+~amd64 ~x86
 base cdrom eutils games multilib portability toolchain-funcs user
 cdinstall gog cdinstall
 
