@@ -3,6 +3,11 @@
 # $Header: $
 
   01 Aug 2012; Daniel Scharrer <dscharrer@gentoo.org>
+  -arx-libertatis-1.0.ebuild, -arx-libertatis-1.0.1.ebuild,
+  -arx-libertatis-1.0.2.ebuild:
+  Remove obsolete ebuilds so people will get the newer ones from the tree
+
+  01 Aug 2012; Daniel Scharrer <dscharrer@gentoo.org>
   arx-libertatis-9999.ebuild:
   Update the live ebuild with the changes from the latest non-live ebuild in
   the tree
