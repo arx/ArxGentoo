@@ -10,6 +10,8 @@ overlay="$(readlink -f "$here/../../")"
 echo "Updating use flag cache for overlay $overlay ..."
 egencache --update-use-local-desc --repo=arx-libertatis --portdir-overlay="$overlay"
 egencache --update --repo=arx-libertatis --portdir-overlay="$overlay"
+git add "$overlay/metadata/cache"
+git add "$overlay/profiles/use.local.desc"
 
 esc=`echo -e '\033'`
 
