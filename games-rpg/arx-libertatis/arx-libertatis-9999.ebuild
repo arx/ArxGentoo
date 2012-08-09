@@ -17,7 +17,6 @@ KEYWORDS=""
 IUSE="cdinstall demo debug unity-build +crash-reporter tools"
 
 COMMON_DEPEND=">=dev-libs/boost-1.39
-	media-libs/devil[jpeg]
 	media-libs/freetype
 	media-libs/glew
 	media-libs/libsdl[opengl]
