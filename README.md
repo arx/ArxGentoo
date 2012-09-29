@@ -6,7 +6,6 @@ Bugs in the software itself should go to the upstream bug trackers:
 
 * app-arch/innoextract: [innoextract.constexpr.org/issues](http://innoextract.constexpr.org/issues)
 * games-rpg/arx-libertatis: [bugs.arx-libertatis.org](https://bugs.arx-libertatis.org/)
-* games-rpg/flare: [github.com/clintbellanger/flare/issues](https://github.com/clintbellanger/flare/issues)
 
 This is a gentoo overlay that can be used with layman to install [Arx Libertatis](http://arx-libertatis.org/) and other software under [Gentoo Linux](http://www.gentoo.org/).
 
@@ -36,7 +35,9 @@ Overlays added using layman won't be updated by `emerge --fetch`, you need to ru
 * `games-rpg/arx-fatalis-data`: [Arx Fatalis data](http://www.arkane-studios.com/uk/arx.php)
 * `games-rpg/arx-fatalis-demo`: [Arx Fatalis demo](http://www.arkane-studios.com/uk/arx.php)
 * `games-rpg/arx-libertatis`: [Cross-platform port of Arx Fatalis, a first-person role-playing game](http://arx-libertatis.org/)
-* `games-rpg/flare`: [Free/Libre Action Roleplaying Engine](http://clintbellanger.net/rpg/)
+* ~~`games-rpg/flare`~~: [Free/Libre Action Roleplaying Engine](http://clintbellanger.net/rpg/)<br>
+  A more up to date version is available in the [hasufell overlay](https://github.com/hasufell/hasufell-overlay).<br>
+	See also the [package request on the Gentoo bug tracker](https://bugs.gentoo.org/show_bug.cgi?id=403319).
 
 ## Contact
 
