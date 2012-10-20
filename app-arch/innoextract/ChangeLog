@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Oct 2012; Daniel Scharrer <dscharrer@gentoo.org> innoextract-9999.ebuild:
+  Add missing virtual/libiconv dependency
+
   01 Aug 2012; Daniel Scharrer <dscharrer@gentoo.org> -innoextract-1.2.ebuild:
   Remove obsolete ebuilds so people will get the one from the tree
 

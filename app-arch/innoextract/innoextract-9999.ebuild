@@ -17,6 +17,7 @@ KEYWORDS=""
 IUSE="debug doc +lzma"
 
 RDEPEND=">=dev-libs/boost-1.37
+	virtual/libiconv
 	lzma? ( app-arch/xz-utils )"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
