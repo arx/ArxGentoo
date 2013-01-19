@@ -1,4 +1,4 @@
->=dev-libs/boost-1.39 media-libs/freetype media-libs/glew media-libs/libsdl[opengl] media-libs/openal sys-libs/zlib virtual/opengl x11-libs/libX11 crash-reporter? ( x11-libs/qt-core:4[ssl] x11-libs/qt-gui:4 ) >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) dev-vcs/git >=sys-apps/sed-4
+>=dev-libs/boost-1.39 media-libs/freetype media-libs/glew media-libs/libsdl[opengl] media-libs/openal sys-libs/zlib virtual/opengl x11-libs/libX11 crash-reporter? ( x11-libs/qt-core:4[ssl] x11-libs/qt-gui:4 ) >=dev-util/cmake-2.8.8 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) dev-vcs/git >=sys-apps/sed-4
 >=dev-libs/boost-1.39 media-libs/freetype media-libs/glew media-libs/libsdl[opengl] media-libs/openal sys-libs/zlib virtual/opengl x11-libs/libX11 crash-reporter? ( x11-libs/qt-core:4[ssl] x11-libs/qt-gui:4 ) crash-reporter? ( sys-devel/gdb )
 0
 

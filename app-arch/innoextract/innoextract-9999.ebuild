@@ -1,9 +1,9 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=4
-EGIT_REPO_URI="git://github.com/dscharrer/InnoExtract.git"
+EGIT_REPO_URI="git://github.com/dscharrer/innoextract.git"
 
 inherit cmake-utils git-2
 
