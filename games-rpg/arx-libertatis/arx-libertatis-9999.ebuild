@@ -16,8 +16,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE="debug unity-build +crash-reporter tools"
 
-COMMON_DEPEND=">=dev-libs/boost-1.39
-	media-libs/freetype
+COMMON_DEPEND="media-libs/freetype
 	media-libs/glew
 	media-libs/libsdl:0[opengl]
 	media-libs/openal
@@ -30,18 +29,20 @@ COMMON_DEPEND=">=dev-libs/boost-1.39
 		)"
 RDEPEND="${COMMON_DEPEND}
 	crash-reporter? ( sys-devel/gdb )"
-DEPEND="${COMMON_DEPEND}"
+DEPEND="${COMMON_DEPEND}
+	>=dev-libs/boost-1.39"
 
 DOCS=( README.md AUTHORS CHANGELOG )
 
 src_configure() {
-	use debug && CMAKE_BUILD_TYPE=Debug
-
-	# editor does not build
 	local mycmakeargs=(
+		-DSTRICT_USE=ON
+		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use unity-build UNITY_BUILD)
 		$(cmake-utils_use_build tools TOOLS)
 		$(cmake-utils_use_build crash-reporter CRASHREPORTER)
+		-DUSE_QT5=OFF # No Qt 5 in the main tree yet, disable for now
+		-DSET_OPTIMIZATION_FLAGS=OFF
 		-DCMAKE_INSTALL_PREFIX="${GAMES_PREFIX}"
 		-DGAMESBINDIR="${GAMES_BINDIR}"
 		-DCMAKE_INSTALL_DATAROOTDIR="${GAMES_DATADIR_BASE}"
