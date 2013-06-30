@@ -11,7 +11,6 @@
 		<flag name='crash-reporter'>Build a <pkg>dev-qt/qtgui</pkg>-based tool that allows to submit crash information to the upstream backtracker.</flag>
 		<flag name='tools'>Build tools that can extract the game's data and save files.</flag>
 		<flag name='unity-build'>Build everything in one big source file, allowing for faster build times and better optimizations at the cost of higher compile-time memory usage.</flag>
-		<flag name='demo'>Install the Arx Fatalis demo data. This does not change the contents of this package, it only adds a run-time dependency on <pkg>games-rpg/arx-fatalis-demo</pkg>.</flag>
 	</use>
 	<upstream>
 		<doc lang="en">http://wiki.arx-libertatis.org/</doc>

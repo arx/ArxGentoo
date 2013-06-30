@@ -14,7 +14,7 @@ SRC_URI=""
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="cdinstall demo debug unity-build +crash-reporter tools"
+IUSE="debug unity-build +crash-reporter tools"
 
 COMMON_DEPEND=">=dev-libs/boost-1.39
 	media-libs/freetype
@@ -31,8 +31,6 @@ COMMON_DEPEND=">=dev-libs/boost-1.39
 RDEPEND="${COMMON_DEPEND}
 	crash-reporter? ( sys-devel/gdb )"
 DEPEND="${COMMON_DEPEND}"
-PDEPEND="cdinstall? ( >=games-rpg/arx-fatalis-data-1.21 )
-	demo? ( games-rpg/arx-fatalis-demo )"
 
 DOCS=( README.md AUTHORS CHANGELOG )
 
@@ -68,13 +66,15 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
-	einfo "This package only installs the game binary."
-	if ! use cdinstall || ! use demo ; then
-		elog "You need the demo or full game data."
-		elog "See http://wiki.arx-libertatis.org/Getting_the_game_data for more information"
-		elog
-		elog "You might want to enable cdinstall or demo useflag."
-	fi
+	elog "optional dependencies:"
+	elog "  games-rpg/arx-fatalis-data (from CD, GOG, or existing install, e.g. Steam)"
+	elog "  games-rpg/arx-fatalis-demo (free demo)"
+	elog
+	elog "This package only installs the game binary."
+	elog "You need the demo or full game data. Also see:"
+	elog "http://wiki.arx-libertatis.org/Getting_the_game_data"
+	elog
+	elog "You can use the arx-install-data script to install the game data."
 
 	games_pkg_postinst
 	gnome2_icon_cache_update
