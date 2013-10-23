@@ -7,7 +7,7 @@ http://arx-libertatis.org/
 GPL-3
 Cross-platform port of Arx Fatalis, a first-person role-playing game
 
-base cmake-utils eutils flag-o-matic games git-2 gnome2-utils multilib toolchain-funcs user
+base cmake-utils eutils flag-o-matic games git-2 git-r3 gnome2-utils multilib toolchain-funcs user
 debug unity-build +crash-reporter tools
 
 

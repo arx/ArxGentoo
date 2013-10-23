@@ -1,20 +1,20 @@
 gog? ( app-arch/innoextract ) cdinstall? ( app-arch/cabextract app-arch/innoextract )
-
+games-rpg/arx-libertatis
 0
-gog? ( setup_arx_fatalis.exe ) cdinstall? ( http://download.zenimax.com/arxfatalis/patches/1.21/ArxFatalis_1.21_MULTILANG.exe )
-mirror gog? ( fetch )
+cdinstall? ( http://download.zenimax.com/arxfatalis/patches/1.21/ArxFatalis_1.21_MULTILANG.exe ) gog? ( setup_arx_fatalis.exe )
+binchecks mirror gog? ( fetch )
 http://www.arkane-studios.com/uk/arx.php
-gog? ( ArxFatalis-EULA-GOG.com ) cdinstall? ( ArxFatalis-EULA-JoWooD )
-Arx Fatalis data
+cdinstall? ( ArxFatalis-EULA-JoWooD ) gog? ( ArxFatalis-EULA-GOG )
+Arx Fatalis data files
 ~amd64 ~x86
-base cdrom eutils games multilib portability toolchain-funcs user
-cdinstall gog cdinstall
+base cdrom check-reqs eutils games multilib portability toolchain-funcs user
+gog cdinstall
+^^ ( cdinstall gog )
 
 
-
-2
+5
 cdinstall? ( interactive )
-compile configure install nofetch postinst preinst prepare setup unpack
+compile configure install nofetch postinst preinst prepare pretend setup unpack
 
 
 
