@@ -1,4 +1,4 @@
-gog? ( app-arch/innoextract ) cdinstall? ( app-arch/cabextract app-arch/innoextract )
+gog? ( app-arch/innoextract ) cdinstall? ( || ( app-arch/cabextract app-arch/libarchive app-arch/p7zip ) app-arch/innoextract )
 games-rpg/arx-libertatis
 0
 cdinstall? ( http://download.zenimax.com/arxfatalis/patches/1.21/ArxFatalis_1.21_MULTILANG.exe ) gog? ( setup_arx_fatalis.exe )
@@ -9,7 +9,7 @@ Arx Fatalis data files
 ~amd64 ~x86
 base cdrom check-reqs eutils games multilib portability toolchain-funcs user
 gog cdinstall
-^^ ( cdinstall gog )
+|| ( !cdinstall !gog )
 
 
 5

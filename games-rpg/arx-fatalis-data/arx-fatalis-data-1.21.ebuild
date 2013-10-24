@@ -16,15 +16,20 @@ LICENSE="cdinstall? ( ArxFatalis-EULA-JoWooD ) gog? ( ArxFatalis-EULA-GOG )"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="gog"
-REQUIRED_USE="^^ ( cdinstall gog )"
+REQUIRED_USE="|| ( !cdinstall !gog )"
 RESTRICT="binchecks mirror gog? ( fetch )"
 
 RDEPEND="games-rpg/arx-libertatis"
 DEPEND="gog? ( app-arch/innoextract )
-	cdinstall? ( app-arch/cabextract app-arch/innoextract )"
+	cdinstall? (
+		|| ( app-arch/cabextract app-arch/libarchive app-arch/p7zip )
+		app-arch/innoextract
+	)"
 
 CHECKREQS_DISK_BUILD="621M"
 CHECKREQS_DISK_USR="617M"
+
+S="${WORKDIR}"
 
 MY_DATADIR="${GAMES_DATADIR}/arx"
 
@@ -34,44 +39,30 @@ pkg_nofetch() {
 }
 
 src_unpack() {
+	local arx_install_data_options=(--no-patch --batch --data-dir="${S}")
 	if use gog ; then
-		"${FILESDIR}/install-gog" --no-progress "${DISTDIR}/${A}" "${S}" || die "unpack failed"
+		arx_install_data_options+=( --source="${DISTDIR}/${A}" )
 	else if use cdinstall ; then
 		cdrom_get_cds "bin/Arx.ttf"
-		"${FILESDIR}/install-cd" --no-progress "${CDROM_ROOT}" "${DISTDIR}/${A}" "${S}" \
-			|| die "unpack failed"
+		arx_install_data_options+=( --source="${CDROM_ROOT}" --patch="${DISTDIR}/${A}" )
+	else if [ -z "${ARX_FATALIS_SRC}" ] ; then
+		eerror "You need either set ARX_FATALIS_SRC to point to an existing Arx Fatalis"
+		eerror "installation or use the gog or cdinstall use flags:"
+		eerror "  export ARX_FATALIS_SRC=/path/to/arx"
+		die "Could not find game data."
 	else
-		if [ "${ARX_FATALIS_DIR}" != "" ]
-			then local _srcdir="${ARX_FATALIS_DIR}"
-		else if [ -f "${MY_DATADIR}/data.pak" ]
-			then local _srcdir="${MY_DATADIR}"
-		else
-			eerror "You need either set ARX_FATALIS_DIR to point to an existing Arx Fatalis"
-			eerror "installation or use the gog or cdinstall use flags:"
-			eerror "  export ARX_FATALIS_DIR=/path/to/arx"
-			eerror "This is only needed for the first install - after that the game data will"
-			eerror "be copied from existing installs unless specified otherwise."
-			die "Could not find game data."
-		fi ; fi
-		"${FILESDIR}/install-copy" "${_srcdir}" "${S}" || die "unpack failed"
-	fi ; fi
+		arx_install_data_options+=( --source="${ARX_FATALIS_SRC}" )
+	fi ; fi ; fi
+	# TODO The current arx-libertatis ebuild puts arx-install-data into GAMES_BINDIR
+	#      which means we can't use it here.
+	local arx_install_data="${FILESDIR}/arx-install-data"
+	"${arx_install_data}" "${arx_install_data_options[@]}"
 }
 
 src_install() {
 
 	insinto "${MY_DATADIR}"
-	doins -r * || die "doins failed"
+	doins -r *
 
 	prepgamesdirs
-}
-
-pkg_postinst() {
-
-	if use cdinstall || use gog ; then
-		elog Now that the Arx Fatalis data has been installed you can remove the cdinstall
-		elog and gog use flags. This package will try to use existing installed data if
-		elog no use flags are set and ARX_FATALIS_DIR is not defined.
-	fi
-
-	games_pkg_postinst
 }
