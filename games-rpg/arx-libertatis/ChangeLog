@@ -2,6 +2,11 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Nov 2013; Daniel Scharrer <daniel@constexpr.org>
+  arx-libertatis-9999.ebuild:
+  Add support for media-libs/libsdl2.
+  Also import changes from main tree and update to git-r3.
+
   30 Jun 2013; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-9999.ebuild:
   Make use of new features and dependency changes in the upcoming 1.1 release

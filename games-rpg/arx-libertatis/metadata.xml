@@ -7,6 +7,7 @@
 	</maintainer>
 	<longdescription>Cross-platform port of Arx Fatalis, a first-person role-playing game. This package only includes the game executable - you will also need the data files from the original game.</longdescription>
 	<use>
+		<flag name='sdl2'>Build against <pkg>media-libs/libsdl2</pkg> instead of <pkg>media-libs/libsdl</pkg>.</flag>
 		<flag name='debug'>Enable asserts and debug logging and disable optimizations.</flag>
 		<flag name='crash-reporter'>Build a <pkg>dev-qt/qtgui</pkg>-based tool that allows to submit crash information to the upstream backtracker.</flag>
 		<flag name='tools'>Build tools that can extract the game's data and save files.</flag>
