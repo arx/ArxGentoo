@@ -7,7 +7,7 @@ http://constexpr.org/innoextract/
 ZLIB
 A tool to unpack installers created by Inno Setup
 
-cmake-utils eutils flag-o-matic git-2 git-r3 multilib toolchain-funcs user
+cmake-utils eutils flag-o-matic git-2 git-r3 multilib toolchain-funcs
 c++0x debug doc +lzma static
 
 
