@@ -33,11 +33,7 @@ Overlays added using layman won't be updated by `emerge --fetch`, you need to ru
 
 * `app-arch/innoextract`: [A tool to unpack installers created by Inno Setup](http://constexpr.org/innoextract/)
 * `games-rpg/arx-fatalis-data`: [Arx Fatalis data](http://www.arkane-studios.com/uk/arx.php)
-* `games-rpg/arx-fatalis-demo`: [Arx Fatalis demo](http://www.arkane-studios.com/uk/arx.php)
 * `games-rpg/arx-libertatis`: [Cross-platform port of Arx Fatalis, a first-person role-playing game](http://arx-libertatis.org/)
-* ~~`games-rpg/flare`~~: [Free/Libre Action Roleplaying Engine](http://clintbellanger.net/rpg/)<br>
-  A more up to date version is available in the [hasufell overlay](https://github.com/hasufell/hasufell-overlay).<br>
-	See also the [package request on the Gentoo bug tracker](https://bugs.gentoo.org/show_bug.cgi?id=403319).
 
 ## Contact
 
