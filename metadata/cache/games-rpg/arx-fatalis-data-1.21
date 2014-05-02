@@ -1,5 +1,5 @@
 gog? ( app-arch/innoextract ) cdinstall? ( || ( app-arch/cabextract app-arch/libarchive app-arch/p7zip ) app-arch/innoextract )
-games-rpg/arx-libertatis
+games-rpg/arx-libertatis games-misc/games-envd
 0
 cdinstall? ( http://download.zenimax.com/arxfatalis/patches/1.21/ArxFatalis_1.21_MULTILANG.exe ) gog? ( setup_arx_fatalis.exe )
 binchecks mirror gog? ( fetch )
