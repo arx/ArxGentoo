@@ -4,6 +4,10 @@
 
   06 Jun 2014; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-9999.ebuild:
+  Added missing GLM dependency.
+
+  06 Jun 2014; Daniel Scharrer <daniel@constexpr.org>
+  arx-libertatis-9999.ebuild:
   Updated static linking dependencies: FreeType and ZLIB can now be statically
   linked.
 
