@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -17,23 +17,31 @@ KEYWORDS=""
 IUSE="c++0x debug unity-build +crash-reporter static tools +sdl2"
 
 COMMON_DEPEND="
-	media-libs/freetype
 	!sdl2? ( media-libs/libsdl[X,video,opengl] )
 	sdl2? ( media-libs/libsdl2[X,video,opengl] )
 	media-libs/openal
-	sys-libs/zlib
 	virtual/opengl
 	crash-reporter? (
 		dev-qt/qtcore:4[ssl]
 		dev-qt/qtgui:4
 	)
-	!static? ( media-libs/glew )"
+	!static? (
+		media-libs/freetype
+		media-libs/glew
+		sys-libs/zlib
+	)"
 RDEPEND="${COMMON_DEPEND}
 	crash-reporter? ( sys-devel/gdb )"
 DEPEND="${COMMON_DEPEND}
 	dev-libs/boost
 	virtual/pkgconfig
-	static? ( media-libs/glew[static-libs] )"
+	static? (
+		|| ( media-libs/libpng[static-libs] media-libs/freetype[-png] )
+		|| ( app-arch/bzip2[static-libs] media-libs/freetype[-bzip2] )
+		media-libs/freetype[static-libs]
+		media-libs/glew[static-libs]
+		sys-libs/zlib[static-libs]
+	)"
 
 DOCS=( README.md AUTHORS CHANGELOG )
 
