@@ -14,12 +14,12 @@ SRC_URI=""
 LICENSE="ZLIB"
 SLOT="0"
 KEYWORDS=""
-IUSE="c++0x debug doc +lzma static"
+IUSE="c++0x debug doc +iconv +lzma static"
 
 RDEPEND="
 	!static? (
 		dev-libs/boost:=
-		virtual/libiconv
+		iconv? ( virtual/libiconv )
 		lzma? ( app-arch/xz-utils )
 	)"
 DEPEND="${RDEPEND}
@@ -28,7 +28,7 @@ DEPEND="${RDEPEND}
 		app-arch/bzip2[static-libs]
 		dev-libs/boost[static-libs]
 		sys-libs/zlib[static-libs]
-		virtual/libiconv
+		iconv? ( virtual/libiconv )
 		lzma? ( app-arch/xz-utils[static-libs] )
 	)"
 
@@ -48,6 +48,7 @@ pkg_pretend() {
 
 src_configure() {
 	local mycmakeargs=(
+		$(usex iconv -DWITH_CONV=iconv -DWITH_CONV=builtin)
 		$(cmake-utils_use_use lzma LZMA)
 		$(cmake-utils_use_use static STATIC_LIBS)
 		$(cmake-utils_use_use c++0x CXX11)
