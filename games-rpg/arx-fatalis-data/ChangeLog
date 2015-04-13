@@ -1,6 +1,10 @@
 # ChangeLog for games-rpg/arx-fatalis-data
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  13 Apr 2015; Daniel Scharrer <daniel@constexpr.org>
+  arx-fatalis-data-1.21.ebuild:
+  update license to more generic GOG-EULA
 
   04 Aug 2012; Daniel Scharrer <dscharrer@gentoo.org> files/install-verify:
   Add support for a bundled version of AL to the install-verify script
