@@ -4,6 +4,10 @@
 
   16 Aug 2015; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-9999.ebuild:
+  Update required GLM version
+
+  16 Aug 2015; Daniel Scharrer <daniel@constexpr.org>
+  arx-libertatis-9999.ebuild:
   Enable C++11 mode by default
 
   16 Aug 2015; Daniel Scharrer <daniel@constexpr.org>

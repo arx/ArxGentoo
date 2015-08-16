@@ -35,7 +35,7 @@ RDEPEND="${COMMON_DEPEND}
 	crash-reporter? ( sys-devel/gdb )"
 DEPEND="${COMMON_DEPEND}
 	dev-libs/boost
-	>=media-libs/glm-0.9.2.7
+	>=media-libs/glm-0.9.5.0
 	virtual/pkgconfig
 	static? (
 		|| ( media-libs/libpng[static-libs] media-libs/freetype[-png] )
