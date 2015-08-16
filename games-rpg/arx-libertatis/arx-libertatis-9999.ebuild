@@ -1,10 +1,11 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=5
 EGIT_REPO_URI="git://github.com/arx/ArxLibertatis.git"
 
+CMAKE_WARN_UNUSED_CLI=yes
 inherit eutils cmake-utils git-r3 gnome2-utils games
 
 DESCRIPTION="Cross-platform port of Arx Fatalis, a first-person role-playing game"
@@ -14,7 +15,7 @@ SRC_URI=""
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="c++0x debug unity-build +crash-reporter static tools +sdl2"
+IUSE="c++0x debug +unity-build +crash-reporter static tools +sdl2"
 
 COMMON_DEPEND="
 	!sdl2? ( media-libs/libsdl[X,video,opengl] )
@@ -69,8 +70,8 @@ src_configure() {
 		-DUSE_NATIVE_FS=ON
 		-DUSE_OPENAL=ON
 		-DUSE_OPENGL=ON
+		$(usex crash-reporter "-DWITH_QT=4" "")
 		$(cmake-utils_use_use static STATIC_LIBS)
-		-DWITH_QT=4 # No Qt 5 in the main tree yet, disable for now
 		$(usex sdl2 -DWITH_SDL=2 -DWITH_SDL=1)
 	)
 
