@@ -2,11 +2,14 @@
 # your descriptions to your package's metadata.xml ONLY.
 # * generated automatically using egencache *
 
+app-arch/innoextract:c++0x - Compile innoextract using the C++11 standard.
 app-arch/innoextract:debug - Enable debug logging and the --debug command-line option.
 app-arch/innoextract:lzma - Add support for extracting lzma-compressed installers using app-arch/xz-utils
 games-rpg/arx-fatalis-data:gog - Extract the data from the GOG.com installer.
+games-rpg/arx-libertatis:c++0x - Compile arx-libertatis using the C++11 standard.
 games-rpg/arx-libertatis:crash-reporter - Build a dev-qt/qtgui-based tool that allows to submit crash information to the upstream backtracker.
-games-rpg/arx-libertatis:debug - Enable asserts and debug logging and disable optimizations.
+games-rpg/arx-libertatis:debug - Enable asserts and debug logging.
 games-rpg/arx-libertatis:sdl2 - Build against media-libs/libsdl2 instead of media-libs/libsdl.
+games-rpg/arx-libertatis:static - Link libraries statically, currently only sys-libs/zlib, media-libs/glew and media-libs/freetype (including media-libs/libpng and app-arch/bzip2 if FreeType is built with them)
 games-rpg/arx-libertatis:tools - Build tools that can extract the game's data and save files.
-games-rpg/arx-libertatis:unity-build - Build everything in one big source file, allowing for faster build times and better optimizations at the cost of higher compile-time memory usage.
+games-rpg/arx-libertatis:unity-build - Build everything in one big source file, allowing for faster build times and better optimizations at the cost of higher memory usage.
