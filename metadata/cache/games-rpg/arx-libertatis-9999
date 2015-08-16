@@ -8,7 +8,7 @@ GPL-3
 Cross-platform port of Arx Fatalis, a first-person role-playing game
 
 base cmake-utils eutils flag-o-matic games git-r3 gnome2-utils multilib toolchain-funcs user
-c++0x debug +unity-build +crash-reporter static tools +sdl2
++c++0x debug +unity-build +crash-reporter static tools +sdl2
 
 
 

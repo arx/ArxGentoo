@@ -15,7 +15,7 @@ SRC_URI=""
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="c++0x debug +unity-build +crash-reporter static tools +sdl2"
+IUSE="+c++0x debug +unity-build +crash-reporter static tools +sdl2"
 
 COMMON_DEPEND="
 	!sdl2? ( media-libs/libsdl[X,video,opengl] )
