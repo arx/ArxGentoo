@@ -8,8 +8,7 @@
 	<longdescription>Inno Setup is a tool to create installers for Microsoft Windows applications. Inno Extracts allows to extract such installers under non-windows systems without running the actual installer using wine.</longdescription>
 	<use>
 		<flag name='debug'>Enable debug logging and the --debug command-line option.</flag>
-		<flag name='lzma'>Add support for extracting lzma-compressed installers using <pkg>app-arch/xz-utils</pkg></flag>
-		<flag name="c++0x">Compile innoextract using the C++11 standard.</flag>
+		<flag name='lzma'>Enable support for extracting lzma-compressed installers using <pkg>app-arch/xz-utils</pkg>.</flag>
 	</use>
 	<upstream>
 		<maintainer status='active'>
@@ -18,7 +17,7 @@
 		</maintainer>
 		<bugs-to>http://innoextract.constexpr.org/issues</bugs-to>
 		<changelog>http://constexpr.org/innoextract/changelog</changelog>
-		<doc lang="en">http://constexpr.org/innoextract/</doc>
+		<doc lang="en">http://constexpr.org/innoextract/innoextract.1</doc>
 		<remote-id type='github'>dscharrer/innoextract</remote-id>
 	</upstream>
 </pkgmetadata> 
