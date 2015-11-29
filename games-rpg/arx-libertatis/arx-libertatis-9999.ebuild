@@ -23,8 +23,9 @@ COMMON_DEPEND="
 	media-libs/openal
 	virtual/opengl
 	crash-reporter? (
-		dev-qt/qtcore:4[ssl]
+		dev-qt/qtcore:4
 		dev-qt/qtgui:4
+		net-misc/curl[ssl]
 	)
 	!static? (
 		media-libs/freetype
