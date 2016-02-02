@@ -56,7 +56,6 @@ src_configure() {
 	# editor does not build
 	local mycmakeargs=(
 		$(cmake-utils_use_build crash-reporter CRASHREPORTER)
-		-DBUILD_EDITOR=OFF
 		$(cmake-utils_use_build tools TOOLS)
 		-DCMAKE_INSTALL_DATAROOTDIR="${GAMES_DATADIR_BASE}"
 		-DCMAKE_INSTALL_PREFIX="${GAMES_PREFIX}"
