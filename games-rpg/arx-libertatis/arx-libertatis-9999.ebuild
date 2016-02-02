@@ -62,6 +62,7 @@ src_configure() {
 		$(cmake-utils_use debug DEBUG)
 		-DGAMESBINDIR="${GAMES_BINDIR}"
 		-DICONDIR=/usr/share/icons/hicolor/128x128/apps
+		-DRUNTIME_DATADIR=""
 		-DINSTALL_SCRIPTS=ON
 		-DSET_OPTIMIZATION_FLAGS=OFF
 		-DSTRICT_USE=ON
