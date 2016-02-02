@@ -15,7 +15,7 @@ SRC_URI=""
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="+c++0x debug +unity-build +crash-reporter static tools +sdl2"
+IUSE="blender +c++0x debug +unity-build +crash-reporter static tools +sdl2"
 
 COMMON_DEPEND="
 	!sdl2? ( media-libs/libsdl[X,video,opengl] )
@@ -64,6 +64,7 @@ src_configure() {
 		-DICONDIR=/usr/share/icons/hicolor/128x128/apps
 		-DRUNTIME_DATADIR=""
 		-DINSTALL_SCRIPTS=ON
+		$(cmake-utils_use blender INSTALL_BLENDER_PLUGIN)
 		-DSET_OPTIMIZATION_FLAGS=OFF
 		-DSTRICT_USE=ON
 		$(cmake-utils_use unity-build UNITY_BUILD)

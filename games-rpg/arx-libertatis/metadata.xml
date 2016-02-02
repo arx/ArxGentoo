@@ -6,6 +6,7 @@
 		<name>Daniel Scharrer</name>
 	</maintainer>
 	<use>
+		<flag name='blender'>Install the Arx Libertatis Blender addon and support library.</flag>
 		<flag name="c++0x">Compile arx-libertatis using the C++11 standard.</flag>
 		<flag name='crash-reporter'>Build a <pkg>dev-qt/qtgui</pkg>-based
 			tool that allows to submit crash information to the upstream
