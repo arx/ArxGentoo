@@ -4,6 +4,10 @@
 
   16 May 2016; Daniel Scharrer <daniel@constexpr.org>
   arx-libertatis-9999.ebuild:
+  Remove unused cmake variable
+
+  16 May 2016; Daniel Scharrer <daniel@constexpr.org>
+  arx-libertatis-9999.ebuild:
   Use pre-built data files
 
   29 Nov 2015; Daniel Scharrer <daniel@constexpr.org>

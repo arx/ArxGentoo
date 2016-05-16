@@ -67,7 +67,6 @@ src_configure() {
 		-DCMAKE_INSTALL_PREFIX="${GAMES_PREFIX}"
 		$(cmake-utils_use debug DEBUG)
 		-DGAMESBINDIR="${GAMES_BINDIR}"
-		-DICONDIR=/usr/share/icons/hicolor/128x128/apps
 		-DRUNTIME_DATADIR=""
 		-DINSTALL_SCRIPTS=ON
 		$(cmake-utils_use blender INSTALL_BLENDER_PLUGIN)
