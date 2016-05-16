@@ -1,9 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
 EAPI=5
 EGIT_REPO_URI="git://github.com/arx/ArxLibertatis.git"
+ARX_DATA_REPO_URI="git://github.com/arx/ArxLibertatisData.git"
 
 CMAKE_WARN_UNUSED_CLI=yes
 inherit eutils cmake-utils git-r3 gnome2-utils games
@@ -48,13 +49,18 @@ DEPEND="${COMMON_DEPEND}
 
 DOCS=( README.md AUTHORS CHANGELOG )
 
+ARX_DATA_DIR="${WORKDIR}/${PN}-data"
+
 src_unpack() {
 	git-r3_src_unpack
+	git-r3_fetch "${ARX_DATA_REPO_URI}"
+	git-r3_checkout "${ARX_DATA_REPO_URI}" "${ARX_DATA_DIR}"
 }
 
 src_configure() {
 	# editor does not build
 	local mycmakeargs=(
+		-DDATA_FILES="${ARX_DATA_DIR}"
 		$(cmake-utils_use_build crash-reporter CRASHREPORTER)
 		$(cmake-utils_use_build tools TOOLS)
 		-DCMAKE_INSTALL_DATAROOTDIR="${GAMES_DATADIR_BASE}"
