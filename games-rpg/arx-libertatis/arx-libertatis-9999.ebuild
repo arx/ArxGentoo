@@ -7,7 +7,7 @@ EGIT_REPO_URI="git://github.com/arx/ArxLibertatis.git"
 ARX_DATA_REPO_URI="git://github.com/arx/ArxLibertatisData.git"
 
 CMAKE_WARN_UNUSED_CLI=yes
-inherit eutils cmake-utils git-r3 gnome2-utils games
+inherit eutils cmake-utils git-r3 gnome2-utils
 
 DESCRIPTION="Cross-platform port of Arx Fatalis, a first-person role-playing game"
 HOMEPAGE="http://arx-libertatis.org/"
@@ -64,10 +64,7 @@ src_configure() {
 		-DDATA_FILES="${ARX_DATA_DIR}"
 		$(cmake-utils_use_build crash-reporter CRASHREPORTER)
 		$(cmake-utils_use_build tools TOOLS)
-		-DCMAKE_INSTALL_DATAROOTDIR="${GAMES_DATADIR_BASE}"
-		-DCMAKE_INSTALL_PREFIX="${GAMES_PREFIX}"
 		$(cmake-utils_use debug DEBUG)
-		-DGAMESBINDIR="${GAMES_BINDIR}"
 		-DRUNTIME_DATADIR=""
 		-DINSTALL_SCRIPTS=ON
 		$(cmake-utils_use blender INSTALL_BLENDER_PLUGIN)
@@ -89,24 +86,14 @@ src_configure() {
 		blender_version="${blender_version/-*/}"
 		local blender_api="${blender_version/[a-z]*/}"
 		mycmakeargs+=(
-			-DINSTALL_BLENDER_PLUGINDIR="/usr/share/blender/${blender_api}/scripts/addons/arx" \
+			-DINSTALL_BLENDER_PLUGINDIR="/usr/share/blender/${blender_api}/scripts/addons/arx"
 		)
 	fi
 
 	cmake-utils_src_configure
 }
 
-src_compile() {
-	cmake-utils_src_compile
-}
-
-src_install() {
-	cmake-utils_src_install
-	prepgamesdirs
-}
-
 pkg_preinst() {
-	games_pkg_preinst
 	gnome2_icon_savelist
 }
 
@@ -120,9 +107,8 @@ pkg_postinst() {
 	elog "http://wiki.arx-libertatis.org/Getting_the_game_data"
 	elog
 	elog "If you have already installed the game or use the STEAM version,"
-	elog "run \"${GAMES_BINDIR}/arx-install-data\""
+	elog "run \`arx-install-data\`"
 
-	games_pkg_postinst
 	gnome2_icon_cache_update
 }
 
