@@ -34,7 +34,8 @@ COMMON_DEPEND="
 		sys-libs/zlib
 	)"
 RDEPEND="${COMMON_DEPEND}
-	crash-reporter? ( sys-devel/gdb )"
+	crash-reporter? ( sys-devel/gdb )
+	blender? ( media-gfx/blender:= )"
 DEPEND="${COMMON_DEPEND}
 	dev-libs/boost
 	>=media-libs/glm-0.9.5.0
@@ -81,6 +82,16 @@ src_configure() {
 		$(cmake-utils_use_use static STATIC_LIBS)
 		$(usex sdl2 -DWITH_SDL=2 -DWITH_SDL=1)
 	)
+
+	if use blender ; then
+		local blender_version="$(best_version media-gfx/blender)"
+		blender_version="${blender_version#media-gfx/blender-}"
+		blender_version="${blender_version/-*/}"
+		local blender_api="${blender_version/[a-z]*/}"
+		mycmakeargs+=(
+			-DINSTALL_BLENDER_PLUGINDIR="/usr/share/blender/${blender_api}/scripts/addons/arx" \
+		)
+	fi
 
 	cmake-utils_src_configure
 }
