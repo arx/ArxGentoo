@@ -1,11 +1,11 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
 EAPI=5
 
 CDROM_OPTIONAL="yes"
-inherit eutils cdrom check-reqs games
+inherit eutils cdrom check-reqs
 
 DESCRIPTION="Arx Fatalis data files"
 HOMEPAGE="http://www.arkane-studios.com/uk/arx.php"
@@ -31,7 +31,7 @@ CHECKREQS_DISK_USR="617M"
 
 S="${WORKDIR}"
 
-MY_DATADIR="${GAMES_DATADIR}/arx"
+MY_DATADIR="/usr/share/games/arx"
 
 pkg_nofetch() {
 	einfo "Please download ${A} from your GOG.com account after buying Arx Fatalis"
@@ -53,16 +53,13 @@ src_unpack() {
 	else
 		arx_install_data_options+=( --source="${ARX_FATALIS_SRC}" )
 	fi ; fi ; fi
-	# TODO The current arx-libertatis ebuild puts arx-install-data into GAMES_BINDIR
+	# TODO Some version of the arx-libertatis ebuild puts arx-install-data into GAMES_BINDIR
 	#      which means we can't use it here.
 	local arx_install_data="${FILESDIR}/arx-install-data"
 	"${arx_install_data}" "${arx_install_data_options[@]}"
 }
 
 src_install() {
-
 	insinto "${MY_DATADIR}"
 	doins -r *
-
-	prepgamesdirs
 }
