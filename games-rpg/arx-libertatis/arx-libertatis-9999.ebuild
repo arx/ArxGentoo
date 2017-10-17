@@ -58,6 +58,10 @@ src_unpack() {
 	git-r3_checkout "${ARX_DATA_REPO_URI}" "${ARX_DATA_DIR}"
 }
 
+src_prepare() {
+	cmake-utils_src_prepare
+}
+
 src_configure() {
 	# editor does not build
 	local mycmakeargs=(
