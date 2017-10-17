@@ -24,6 +24,10 @@ DEPEND="${RDEPEND}"
 
 DOCS=( README.md CHANGELOG )
 
+src_prepare() {
+	cmake-utils_src_prepare
+}
+
 src_configure() {
 	local mycmakeargs=(
 		$(cmake-utils_use_use lzma LZMA)
