@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright 2013 Arx Libertatis Team (see the AUTHORS file)
+# Copyright 2013-2017 Arx Libertatis Team (see the AUTHORS file)
 #
 # This file is part of Arx Libertatis.
 #
@@ -40,7 +40,7 @@ disable_color() {
 	dim_cyan='' ; dim_white='' ; reset=''
 }
 disable_color
-if [ -t 1 ] && [ "$(tput colors 2> /dev/null)" != -1 ] ; then
+if [ -z "${NO_COLOR:-1}" ] && [ -t 1 ] && [ "$(tput colors 2> /dev/null)" != -1 ] ; then
 	
 	       red="$(printf '\033[1;31m')"
 	     green="$(printf '\033[1;32m')"
@@ -58,7 +58,7 @@ if [ -t 1 ] && [ "$(tput colors 2> /dev/null)" != -1 ] ; then
 	  dim_cyan="$(printf '\033[0;36m')"
 	 dim_white="$(printf '\033[0;37m')"
 	
-	     reset="$(printf '\033[0m')"
+	     reset="$(printf '\033[m')"
 fi
 
 
@@ -72,7 +72,6 @@ patch_name_localized="ArxFatalis_${patch_ver}_%s.exe"
 patch_url_path="arxfatalis/patches/${patch_ver}/${patch_name}"
 patch_url_master="http://cdn.bethsoft.com/${patch_url_path}"
 patch_urls="http://arx.vg/${patch_name} ${patch_url_master}"
-patch_urls="$patch_urls http://download.zenimax.com/${patch_url_path}"
 patch_urls="$patch_urls http://web.archive.org/web/${patch_url_master}"
 
 # Name and download locations for the Japanese 1.02j patch
@@ -83,17 +82,20 @@ patch_jp_urls="http://arx.vg/${patch_jp_name}" # master URL is no longer availab
 patch_jp_urls="$patch_jp_urls http://web.archive.org/web/${patch_jp_url_master}"
 
 # Name and store page for the GOG.com download
-gog_names='setup_arx_fatalis.exe'
+gog_names='setup_arx_fatalis.exe setup_arx_fatalis_2.0.0.7.exe'
 gog_url='http://www.gog.com/gamecard/arx_fatalis'
 
 # Store page for the Steam download
-steam_url='http://store.steampowered.com/app/1700/'
+steam_appid='1700'
+steam_url="http://store.steampowered.com/app/$steam_appid/"
+steam_install_dir="Arx Fatalis"
 
 # Name and wiki page for the demo download
-demo_names="arx_demo_english.zip arxdemoenglish.zip arx_jpn_demo.exe"
-demo_url='http://arx.vg/Getting_the_game_data#Demo'
+demo_names="arx_demo_english.zip arxdemoenglish.zip arx_demo_english.exe"
+demo_names="$demo_names arx_fatalis_demo_fr.zip arx_demo_german.exe arx_jpn_demo.exe"
+demo_url='http://arx.vg/demo-data'
 
-bug_tracker_url='http://bugs.arx-libertatis.org/'
+bug_report_url='http://arx.vg/bug'
 
 cabextract_url='http://www.cabextract.org.uk/'
 innoextract_url='http://constexpr.org/innoextract/'
@@ -108,7 +110,7 @@ platform="$(uname)"
 command="$(basename "$0")"
 scommand="$(printf '%s' "$command" | tr - _)"
 if [ "$platform" = 'Darwin' ] ; then
-	# Mac OS X
+	# macOS
 	data_dirs='/Applications'
 	data_home="$HOME/Library/Application Support"
 	config_home="$HOME/Library/Application Support"
@@ -189,9 +191,9 @@ abspath() {
 # Too bad we can't just use readlink -f
 if have realpath ; then
 	canonicalize() { realpath "$1" ; }
-else if have grealpath ; then
+elif have grealpath ; then
 	canonicalize() { grealpath "$1" ; }
-else if have greadlink ; then
+elif have greadlink ; then
 	canonicalize() { greadlink -f "$1" ; }
 else
 	canonicalize() {
@@ -206,12 +208,12 @@ else
 		echo "$(pwd -P)/$_canonicalize_file"
 		cd "$_canonicalize_old_pwd"
 	}
-fi ; fi ; fi
+fi
 
 cleanup_functions='' # List of functions to be run on exit
 
-# Add a function to ron on exit.
-# Functions are un in the order they are added.
+# Add a function to run on exit.
+# Functions are run in the order they are added.
 # Usage: on_exit <code>
 # Cleanup functions will receive one argument: the exit message if any or an empty string.
 on_exit() {
@@ -250,7 +252,7 @@ die() {
 
 If you think this is a bug in the install script
 please report the complete output at
-  $bug_tracker_url"
+  $bug_report_url"
 		if [ ! -z "$logfile" ] && [ -f "$logfile" ] ; then
 			_die_message="$_die_message
 
@@ -314,7 +316,7 @@ list_append() {
 	eval "[ -z \"\$$1__list_count\" ] && $1__list_count=0"
 	eval "_list_count=\$$1__list_count"
 	eval "$1__list_comment_$_list_count=\"\$3\""
-	eval "$1__list_count=\$((\$$1__list_count + 1))"
+	eval "$1__list_count=\$(($1__list_count + 1))"
 }
 
 # Append one list to another, preserving comments.
@@ -326,7 +328,7 @@ list_merge() {
 		_list_merge_i=0
 		for _list_merge_entry in $_list_append ; do
 			list_append $1 \"\$_list_merge_entry\" \"\$(list_comment $2 \$_list_merge_i)\"
-			_list_merge_i=\$((\$_list_merge_i + 1))
+			_list_merge_i=\$((_list_merge_i + 1))
 		done
 	"
 }
@@ -408,6 +410,10 @@ list_append extract_ms_cab_reqs '7za'
 list_append extract_ms_cab_reqs '7z' 'p7zip'
 extract_installshield_reqs=''
 list_append extract_installshield_reqs 'unshield'
+extract_rar_reqs=''
+list_append extract_rar_reqs 'unrar'
+extract_ace_reqs=''
+list_append extract_ace_reqs 'unace'
 extract_innosetup_reqs=''
 list_append extract_innosetup_reqs 'innoextract' "$innoextract_url"
 mount_cdrom_reqs=''
@@ -434,6 +440,7 @@ datadir=''        # Output data directory
 batch=0           # Never wait for user input
 gui=0             # Display a graphical user interface (command-line interface otherwise)
 install=1         # Install new non-patch files
+selected_stuff=0  # Has the user made a selection
 installed_stuff=0 # Have we already installed anything?
 patch=1           # Install patch files if needed
 probe_patch=1     # Look for patch files in standard locations and download if needed
@@ -502,7 +509,7 @@ print_help_or() {
 			[ -z \"\$_print_help_or_color\" ] || puts \"\$reset\"
 			_print_help_or_comment=\"\$(list_comment \$_print_help_or_var \$_print_help_or_i)\"
 			[ -z \"\$_print_help_or_comment\" ] || printf ' (%s)' \"\$_print_help_or_comment\"
-			_print_help_or_i=\$((\$_print_help_or_i + 1))
+			_print_help_or_i=\$((_print_help_or_i + 1))
 		done
 	"
 }
@@ -519,14 +526,14 @@ print_help_list() {
 		_print_help_list_i=0
 		for _print_help_list_entry in $_print_help_list_list ; do
 			case \"\$_print_help_list_prefix\" in
-				*%*) printf \"\$_print_help_list_prefix\" \$((\$_print_help_list_i + 1)) ;;
+				*%*) printf \"\$_print_help_list_prefix\" \$((_print_help_list_i + 1)) ;;
 				*)   puts \"\$_print_help_list_prefix\"
 			esac
 			printf \"%s\${reset}\" \"\$_print_help_list_entry\"
 			_print_help_list_comment=\"\$(list_comment \$_print_help_list_var \$_print_help_list_i)\"
 			[ -z \"\$_print_help_list_comment\" ] || printf ' (%s)' \"\$_print_help_list_comment\"
 			printf '\n'
-			_print_help_list_i=\$((\$_print_help_list_i + 1))
+			_print_help_list_i=\$((_print_help_list_i + 1))
 		done
 	"
 }
@@ -536,7 +543,7 @@ print_help_list() {
 print_help() {
 	[ -z "${1-}" ] || ( printf '%s\n\n' "${red}$1${reset}" )
 	print "
-${white}Simply start the script without any arguments to select paths interactively:
+${white}Start the script without any arguments to select paths interactively:
        \$ $command${reset}
 
 Usage: $command [--source] source [--patch patchfile] [[--data-dir] datadir]
@@ -553,18 +560,18 @@ Usage: $command [--source] source [--patch patchfile] [[--data-dir] datadir]
  -h, --help          Print this message and maybe more
  -b, --batch         Never ask the user questions
  -g, --gui           Show a GUI asking the user what to do
-                     Requires ${dim_pink}KDialog${reset}, ${dim_pink}Zenity${reset}, or ${dim_pink}Xmessage${reset}.
+                     Requires ${dim_pink}KDialog${reset}, ${dim_pink}Zenity${reset}, or ${dim_pink}Xdialog${reset}.
                      If none of them are available the script is re-launched
                      in a terminal emulator.
  -c, --cli           Interactively ask the user to select files/directories (no GUI)
  --no-redirect-log   Don't redirect output to a log file when in GUI mode
  --disable-COMMAND   Don't use the given tool, even if it exists.
-                     Valid values are unzip, bsdtar, cabextract, isoinfo,
-                     fuseiso, fusermount, mount, umount and innoextract,
-                     wget, curl, fetch, unshield, kdialog, zenity, Xdialog,
-                     qdbus, dcop, x-terminal-emulator, urxvt, gtkterm, aterm,
-                     rxvt, gnome-terminal, konsole, xterm, gxmessage, xmessage,
-                     md5sum, md5.
+                     Valid values are 7z, 7za, aterm, bsdtar, cabextract, curl,
+                     dcop, fetch, fuseiso, fusermount, gnome-terminal, greadlink,
+                     grealpath, gtkterm, gxmessage, innoextract, isoinfo, kdialog,
+                     konsole, md5, md5sum, mount, qdbus, realpath, rxvt, umount,
+                     unace, unrar, unshield, unzip, urxvt, wget, Xdialog,
+                     xmessage, xterm, x-terminal-emulator, zenity.
 
 --gui is enabled by default if there are no arguments *and* stdin, stdout or stderr is not a terminal
 "
@@ -574,12 +581,14 @@ Usage: $command [--source] source [--patch patchfile] [[--data-dir] datadir]
 	help_cab="$(print_help_or extract_ms_cab_reqs "$dim_pink")"
 	help_zip="$(print_help_or extract_zip_reqs "$dim_pink")"
 	help_unshield="$(print_help_or extract_installshield_reqs "$dim_pink")"
+	help_rar="$(print_help_or extract_rar_reqs "$dim_pink")"
+	help_ace="$(print_help_or extract_ace_reqs "$dim_pink")"
 	help_download="$(print_help_or download_reqs "$dim_pink")"
 	help_optpatch="may use the 1.21 patch file and require ${help_innosetup} if not already patched"
 	help_probe_file_dirs="
    a) the current working directory  (\$PWD):              $user_pwd
-   b) the user's downloads directory (\$HOME):             $HOME
-   c) the user's home directory      (\$XDG_DOWNLOAD_DIR): $downloads_dir
+   b) the user's downloads directory (\$XDG_DOWNLOAD_DIR): $downloads_dir
+   c) the user's home directory      (\$HOME):             $HOME
    d) the temp directory             (\$TMPDIR):           $tempdir"
   help_probe_file_dirs_patch="${help_probe_file_dirs}
    e) the directory containing the source file"
@@ -614,10 +623,14 @@ The ${green}source${reset} can be one of many things:
    ${help_optpatch}
    get it from ${dim_green}${steam_url}${reset}
 
- * ${white}Arx Fatalis ${green}demo${white} zip${reset} ($(print_help_or demo_names))
+ * ${white}Arx Fatalis ${green}demo${reset} (one of the following)
+$(print_help_list "    - " demo_names)
    requires:
-    - ${help_zip}
+    - ${help_zip} [english/french .zip]
     - ${help_cab}
+    - ${help_rar} [english .exe]
+    - ${help_ace} [german .exe]
+    - ${help_unshield} [japanese .exe]
    never uses the 1.21 patch file
    get it from ${dim_green}${demo_url}${reset}
 
@@ -632,13 +645,14 @@ The ${green}source${reset} can be one of many things:
 If no source is specified, these files will be probed:
 1. The following files in${help_probe_file_dirs}
 $(print_help_list "   1.%d ${green}" help_probed_files)
-2. If \$WINEPREFIX is set, any installation in there
-3. Any installation in the default WINEPREFIX (${green}~/.wine${reset})
-4. Any mounted ${green}cdrom${reset} or ISO file
+2. The user's ${green}Steam${reset} library, if available
+3. If \$WINEPREFIX is set, any installation in there
+4. Any installation in the default WINEPREFIX (${green}~/.wine${reset})
+5. Any mounted ${green}cdrom${reset} or ISO file
 
 
 If no ${blue}patch${reset} file is specified, but is needed and
-the --no-patch option wasn't specified specified:
+the --no-patch option wasn't specified:
 1. Try to find the following files in${help_probe_file_dirs_patch}
    1.1. ${blue}${patch_name}${reset}
    1.2. $(printf "$patch_name_localized" '<LANG>')
@@ -662,10 +676,10 @@ Extracting the Japanese patch file requires:
 
 If no ${cyan}data-dir${reset} to install into is specified,
 one is automatically selected similarly to how Arx Libertatis would:
-If --verify and --no-patch (and --no-patch) are give, use the first existing
-directory of the following, otherwise, use the first existing writable directory
+If --verify and --no-patch are give, use the first existing directory
+of the following, otherwise, use the first existing writable directory
 or, if none exists, the first directory that can be created:
-1. Any path in \$${scommand}_PATH (for use in wrapper scripts)
+1. Any path in \$${scommand}_PATH or \$arx_PATH (for use in wrapper scripts)
 2. \"\${XDG_DATA_DIRS:-\"/usr/local/share/:/usr/share/\"}:/opt\" / \"$data_dir_suffixes\":"
 	i=1
 	eval "set -- $(to_list "$data_dirs")"
@@ -673,7 +687,7 @@ or, if none exists, the first directory that can be created:
 		eval "set -- $(to_list "$data_dir_suffixes")"
 		for suffix ; do
 			printf "   2.%d. ${dim_cyan}%s${reset}\\n" $i "$prefix/$suffix"
-			i=$(($i + 1))
+			i=$((i + 1))
 		done
 	done
 print "3. \"\${XDG_DATA_HOME:-\"\$HOME/.local/share\"}\" / \"$user_dir_suffixes\""
@@ -681,7 +695,7 @@ print "3. \"\${XDG_DATA_HOME:-\"\$HOME/.local/share\"}\" / \"$user_dir_suffixes\
 	eval "set -- $(to_list "$user_dir_suffixes")"
 	for suffix ; do
 		printf "   3.%d. ${dim_cyan}%s${reset}\\n" $i "$data_home/$suffix"
-			i=$(($i + 1))
+			i=$((i + 1))
 	done
 	print
 	exit $true
@@ -701,7 +715,7 @@ while [ $# -gt 0 ] ; do
 		-p|--patch)       shift ; patchfile="$1"                  ; patch=1 ;;
 		--patch-jp=*)             patchfile_jp="${1#--patch-jp=}" ; patch=1 ;;
 		--patch-jp)       shift ; patchfile_jp="$1"               ; patch=1 ;;
-		-v|--verify)                                              install=0 ;;
+		-v|--verify)                                      install=0 patch=0 ;;
 		-n|--no-patch)    [ -z "$patchfile" ] && [ -z "$patchfile_jp" ] && patch=0
 		                  probe_patch=0   ;;
 		-b|--batch)       batch=1         ;;
@@ -715,8 +729,8 @@ while [ $# -gt 0 ] ; do
 		-*)               print_help "Uknown option: $1" ;;
 		*)
 			if [ -z "${sourcefile-}" ] && [ $install = 1 ] ; then sourcefile="$1"
-			else if [ -z "${datadir-}"    ] ; then datadir="$1"
-			else print_help "Too many options: $1" ; fi ;fi
+			elif [ -z "${datadir-}"    ] ; then datadir="$1"
+			else print_help "Too many options: $1" ; fi
 	esac
 	[ -z "${1-}" ] && print_help "Expected more options"
 	shift;
@@ -819,7 +833,7 @@ $message"
 		
 	fi
 	
-	# We don't need colors for the UI, but they may cause problems - get rit of them
+	# We don't need colors for the UI, but they may cause problems - get rid of them
 	disable_color
 	
 	if [ $redirect_log = 1 ] ; then
@@ -837,7 +851,7 @@ $message"
 		print "Use the --cli option for an interactive command-line interface."
 	fi
 	
-else
+elif [ ! "$_arx_install_data_force_cli" = 1 ] ; then
 	
 	print "Enabling CLI mode, use the --gui option for a graphical interface."
 	
@@ -859,7 +873,7 @@ pipe_create() {
 	pipe_file="$(mktemp -u "$tempdir/arx-install-data.pipe.XXXXX")"
 	if mkfifo -m 600 "$pipe_file" 2> /dev/null ; then
 		# Fast communication via a FIFO
-		cat "$pipe_file" | "$@" &
+		"$@" < "$pipe_file" &
 		pipe_pid="$!"
 	else
 		# Fallback via regular file, may use polling
@@ -931,7 +945,7 @@ zenity_run() {
 # Create the main progress window.
 # Usage: dialog_create
 dialog_create() {
-	pipe_create zenity  --title "$_dialog_title$1" --width 450 --progress
+	pipe_create zenity --title "$_dialog_title" --width 450 --progress
 }
 
 # Destroy the main progress window.
@@ -1189,7 +1203,7 @@ Xdialog_run() {
 # Usage: dialog_create
 dialog_create() {
 	_Xdialog_width='WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW'
-	pipe_create Xdialog --left --title "$_dialog_title$1" --gauge "$_Xdialog_width" 0 0
+	pipe_create Xdialog --left --title "$_dialog_title" --gauge "$_Xdialog_width" 0 0
 }
 
 # Destroy the main progress window.
@@ -1443,7 +1457,10 @@ handle_cancel() {
 
 Already installed files will not be removed!"
 	fi
-	dialog_ask "$_handle_cancel_message" && print 'Aborted by user' && die
+	if [ $installed_stuff = 1 ] || [ $selected_stuff = 1 ] ; then
+		dialog_ask "$_handle_cancel_message" || return $true
+	fi
+	print 'Aborted by user' && die
 }
 
 # Update the status.
@@ -1552,7 +1569,7 @@ user_select_entry() {
 			
 			# Use 'command (file)' if comment available or 'file' otherwise
 			_user_select_entry_comment="$(
-				list_comment "$_user_select_entry_lname" "$(($_user_select_entry_i - 1))"
+				list_comment "$_user_select_entry_lname" "$((_user_select_entry_i - 1))"
 			)"
 			if [ -z "$_user_select_entry_comment" ] ; then
 				_user_select_entry_label="$_user_select_entry_color2$_user_select_entry$reset"
@@ -1568,7 +1585,7 @@ user_select_entry() {
 			# Remeber the file for the tag
 			eval "_user_select_entry_$_user_select_entry_i=\"\$_user_select_entry\""
 			
-			_user_select_entry_i=$(($_user_select_entry_i + 1))
+			_user_select_entry_i=$((_user_select_entry_i + 1))
 		done
 		
 		# Add entries for custom files/diectories
@@ -1580,12 +1597,12 @@ user_select_entry() {
 			if [ $_user_select_entry_t = --any ] || [ $_user_select_entry_t = --file ] ; then
 				list_append _user_select_entry_tlist $_user_select_entry_ii
 				list_append _user_select_entry_tlist "Select file to $_user_select_entry_verb..."
-				_user_select_entry_ii=$(($_user_select_entry_ii + 1))
+				_user_select_entry_ii=$((_user_select_entry_ii + 1))
 			fi
 			if [ $_user_select_entry_t = --any ] || [ $_user_select_entry_t = --dir ] ; then
 				list_append _user_select_entry_tlist $_user_select_entry_ii
 				list_append _user_select_entry_tlist "Select directory to $_user_select_entry_verb..."
-				_user_select_entry_ii=$(($_user_select_entry_ii + 1))
+				_user_select_entry_ii=$((_user_select_entry_ii + 1))
 			fi
 		fi
 		
@@ -1614,6 +1631,7 @@ user_select_entry() {
 			
 			# User selected an entry -- return that
 			eval "$_user_select_entry_var=\"\$_user_select_entry_$_user_select_entry_num\""
+			selected_stuff=1
 			return $true
 			
 		fi
@@ -1648,7 +1666,7 @@ user_select_entry() {
 			
 			_user_select_entry_path="$(abspath "$_user_select_entry_path")"
 			
-			# The user selected a path, now check if it exists our criteria.
+			# The user selected a path, now check if it meets our criteria.
 			case "$_user_select_entry_access" in
 				--existing)
 				if [ ! -e "$_user_select_entry_path" ]  ; then
@@ -1677,6 +1695,7 @@ user_select_entry() {
 			
 			# Everything went better than expected - save the result
 			eval "$_user_select_entry_var=\"\$_user_select_entry_path\""
+			selected_stuff=1
 			return $true
 			
 		done
@@ -1714,6 +1733,131 @@ found_source_file() {
 	if [ $batch = 1 ] ; then return $true ; else return $false ; fi
 }
 
+# Get a subsection in a .vdf file
+# Usage: cat config | steam_get_section <section>
+steam_get_section() {
+	# Abuse indentation to find the section end
+	grep -Pzoi "\\n(\\s*)\"$1\"\\n\\s+\\{(\\n.*)*?\\n\\1}"
+}
+
+# Get a subsection in a .vdf file - and everything after it
+# Usage: cat config | steam_get_section_tail <section>
+steam_get_section_tail() {
+	# Abuse indentation to find the section end
+	grep -Pzoi "\\n\\s*\"$1\"\\n\\s+\\{(\\n.*)*"
+}
+
+# Remove backtick escapes
+# Usage: echo <escaped_string> | unescape
+steam_unescape() {
+	sed 's/\\\(.\)/\1/g'
+}
+
+# Get an entry in a .vdf file, or the first one if there are multiple
+# Usage: cat config | steam_get_entry <key>
+steam_get_entry() {
+	grep -Pi "^\\s*\"$1\"\s*\".*\"\\s*$" \
+	| head -1 \
+	| sed 's/^[^"]*"[^"]*"[^"]*"\(.*\)"[^"]*$/\1/' \
+	| steam_unescape
+}
+
+# Get the app information section for an appid
+# Usage: steam_get_appinfo <config_file> <appid>
+steam_get_appinfo() {
+	_steam_config="$1"
+	_steam_appid="$2"
+	
+	_steam_appinfo="$(
+		  steam_get_section 'Software' < "$_steam_config" \
+		| steam_get_section 'Valve' \
+		| steam_get_section 'Steam' \
+		| steam_get_section 'apps' \
+		| steam_get_section "$_steam_appid"
+	)"
+	
+	# Fallback if the tree structure changed
+	[ -z "$_steam_appinfo" ] && _steam_appinfo="$(
+		steam_get_section "$_steam_appid" < "$_steam_config"
+	)"
+	
+	# Fallback if the indentation changed
+	[ -z "$_steam_appinfo" ] && _steam_appinfo="$(
+		steam_get_section_tail "$_steam_appid" < "$_steam_config"
+	)"
+	
+	print "$_steam_appinfo"
+}
+
+# Get a config entry for an appid
+# Usage: steam_get_app_config <config_file> <appid>
+steam_get_installdir() {
+	steam_get_appinfo "$1" "$2" | steam_get_entry 'installdir'
+}
+
+# Find possible source directories from a Steam library
+# Usage: probe_steam_library <steamlibrary>
+# Return: $true if more source files should be probed, $false otherwise.
+probe_steam_library() {
+	_steam_library="$1"
+	for _steam_appdir in "$_steam_library/SteamApps" "$_steam_library/steamapps" ; do
+		_steam_installdir="$_steam_appdir/common/$steam_install_dir"
+		if [ -d "$_steam_installdir" ] ; then
+			found_source_file "$_steam_installdir" "Steam" && return $true
+		fi
+	done
+	return $false
+}
+
+# Find possible source directories from a Steam installation
+# Usage: probe_steam_root <steamroot>
+# Return: $true if more source files should be probed, $false otherwise.
+probe_steam_root() {
+	_steam_root="$1"
+	
+	_steam_config="$_steam_root/config/config.vdf"
+	
+	if [ -f "$_steam_config" ] ; then
+		
+		# Strategy 1: Read install directory from Steam config file
+		_steam_installdir="$(steam_get_installdir "$_steam_config" "$steam_appid")"
+		if [ -d "$_steam_installdir" ] ; then
+			found_source_file "$_steam_installdir" "Steam" && return $true
+		fi
+		
+		# Strategy 2: Look for known install directory in steam libraries
+		_steam_libraries="$(
+			sed -n '/BaseInstallFolder/s/^[^\"]*\"[^\"]*\"[^\"]*\"\([^\"]*\)\".*/\1/p' \
+			< "$_steam_config" \
+			| sed 's:[^a-zA-Z0-9/_.\n]:\\&:g' \
+			| lines_to_list
+		)"
+		_steam_library_call='probe_steam_library "$_steam_library" && return $true'
+		eval "for _steam_library in $_steam_libraries ; do $_steam_library_call ; done"
+		
+	fi
+	
+	# Strategy 3: Look for known install directory in the default library
+	probe_steam_library "$_steam_root" && return $true
+	
+	return $false
+}
+
+# Find possible source directories from Steam
+# Usage: probe_steam
+# Return: $true if more source files should be probed, $false otherwise.
+probe_steam() {
+	_steam_roots=''
+	for _steam_root in "$HOME/.steam/root" "$HOME/.steam/steam" "$data_home/Steam" ; do
+		[ -d "$_steam_root" ] || continue
+		set_append _steam_roots "$(canonicalize "$_steam_root")"
+	done
+	_steam_root_call='probe_steam_root "$_steam_root" && return $true'
+	[ -z "$_steam_roots" ] && return $false
+	eval "for _steam_root in $_steam_roots ; do $_steam_root_call ; done"
+	return $false
+}
+
 # Find a match for a case insensitive path containing arx.exe
 # Usage: probe_wine_path <baseprefix> <ipath>
 probe_wine_path() {
@@ -1736,6 +1880,7 @@ probe_wine_path() {
 	[ -z "$_wine_paths" ] && return $false
 	_wine_path_call='probe_wine_path "$_wine_path_prefix" "$_wine_path" && return $true'
 	eval "for _wine_path_prefix in $_wine_paths ; do $_wine_path_call ; done"
+	return $false
 }
 
 # Find possible source directories from a registry key.
@@ -1795,7 +1940,7 @@ probe_wineprefix() {
 	# Probe uninstall entries - combined for effiency
 	_wine_uninstall='Microsoft\Windows\CurrentVersion\Uninstall\'
 	# Steam
-	_wine_steam='Steam App 1700'
+	_wine_steam="Steam App $steam_appid"
 	# Original game
 	_wine_orig='{96443F45-13E2-11D6-AC87-00D0B7A9E540}'
 	# 1.21 patch
@@ -1830,8 +1975,8 @@ probe_cd() {
 probe_cdrom() {
 	
 	_probe_cdrom_mountpoints="$(
-		cat /proc/mounts 2> /dev/null | lines_to_list # Linux - use /proc/mounts
-		mount -p 2> /dev/null | lines_to_list         # Hope that mount has a -p option
+		[ -f /proc/mounts ] && lines_to_list < /proc/mounts # Linux - use /proc/mounts
+		mount -p 2> /dev/null | lines_to_list               # Hope that mount has a -p option
 	)"
 	
 	eval "set -- $_probe_cdrom_mountpoints"
@@ -1865,6 +2010,8 @@ probe_source_files() {
 	# Find by filename
 	probe_files found_source_file "$gog_names" 'GOG.com setup'
 	probe_files found_source_file "$demo_names" 'Demo'
+	
+	probe_steam && return $true
 	
 	# Find an Arx Fatalis installation in $WINEPREFIX
 	[ ! -z "${WINEPREFIX-}" ] && probe_wineprefix "$WINEPREFIX" && return $true
@@ -1924,8 +2071,24 @@ probe_data_dirs() {
 		if [ ! -z "$data_path" ] ; then
 			eval "set -- $(to_list "$data_path")"
 			for _probe_data_dirs_path ; do
-				probe_data_dir $_probe_data_dirs_existing "$_probe_data_dirs_path" "portable" \
-					&& return $true
+				if [ -f "$_probe_data_dirs_path/data" ] ; then
+					eval "set -- $(lines_to_list < "$_probe_data_dirs_path/data")"
+					for _probe_data_dirs_line ; do
+						case "$_probe_data_dirs_line" in
+							/*) ;; *) _probe_data_dirs_line="$(
+							 canonicalize "$_probe_data_dirs_path/$_probe_data_dirs_line"
+							)"
+						esac
+						probe_data_dir $_probe_data_dirs_existing "$_probe_data_dirs_line" \
+							"portable" && return $true
+					done
+				elif [ -d "$_probe_data_dirs_path/data" ] ; then
+					probe_data_dir $_probe_data_dirs_existing "$_probe_data_dirs_path/data" \
+						"portable" && return $true
+				else
+					probe_data_dir $_probe_data_dirs_existing "$_probe_data_dirs_path" "portable" \
+						&& return $true
+				fi
 			done
 		fi
 		
@@ -1934,6 +2097,12 @@ probe_data_dirs() {
 		for _probe_data_dirs_prefix in "$@" ; do
 			eval "set -- $(to_list "$data_dir_suffixes")"
 			for _probe_data_dirs_suffix ; do
+				_probe_data_dirs_force=$_probe_data_dirs_existing
+				[ -e "$_probe_data_dirs_prefix/$_probe_data_dirs_suffix" ] && \
+					_probe_data_dirs_force=0
+				probe_data_dir $_probe_data_dirs_force \
+					"$_probe_data_dirs_prefix/$_probe_data_dirs_suffix/data" "system" \
+					&& return $true
 				probe_data_dir $_probe_data_dirs_existing \
 					"$_probe_data_dirs_prefix/$_probe_data_dirs_suffix" "system" \
 					&& return $true
@@ -1944,7 +2113,13 @@ probe_data_dirs() {
 		if [ $is_root = 0 ] ; then
 			eval "set -- $(to_list "$user_dir_suffixes")"
 			for _probe_data_dirs_suffix ; do
-				probe_data_dir $_probe_data_dirs_existing \
+				_probe_data_dirs_force=$_probe_data_dirs_existing
+				[ -e "$data_home/$_probe_data_dirs_suffix" ] && \
+					_probe_data_dirs_force=0
+				probe_data_dir $_probe_data_dirs_force \
+					"$data_home/$_probe_data_dirs_suffix/data" "user" \
+					&& return $true
+				[ $install = 0 ] && probe_data_dir $_probe_data_dirs_existing \
 					"$data_home/$_probe_data_dirs_suffix" "user" \
 					&& return $true
 			done
@@ -2138,10 +2313,10 @@ extract_iso() {
 			eval "for _extract_iso_f in $_extrac_cdrom_f ; do mv -f \"\$_extract_iso_f\" \"\$(print \"\$_extract_iso_f\" | sed 's:;1$::')\" ; done"
 		fi
 		
-	else if have 7z ; then
+	elif have 7z ; then
 		7z x -tiso "$1"
 		ret="$?"
-	fi ; fi
+	fi
 	
 	# For some iso files bsdtar just does nothing - at least let the user know
 	if [ ! -d "$PWD/bin" ] || ! icontains "$PWD/bin" 'arx.ttf' ; then
@@ -2215,6 +2390,34 @@ extract_installshield() {
 	die "no program to extract $1"
 }
 
+# Extract a RAR .rar or .exe file to the current directory.
+# Usage: extract_rar <rarfile>
+have_extract_rar() { have_extract rar ; }
+extract_rar() {
+	
+	if have unrar ; then
+		puts 'unrar: '
+		unrar x -y -o "$1"
+		return $?
+	fi
+	
+	die "no program to extract $1"
+}
+
+# Extract an ACE .ace or .exe file to the current directory.
+# Usage: extract_ace <acefile>
+have_extract_ace() { have_extract ace ; }
+extract_ace() {
+	
+	if have unace ; then
+		puts 'unace '
+		unace x -y -o "$1"
+		return $?
+	fi
+	
+	die "no program to extract $1"
+}
+
 # Extract an Inno Setup .exe file to the current directory.
 # Usage: extract_innosetup <exefile>
 have_extract_innosetup() { have innoextract ; }
@@ -2248,7 +2451,7 @@ extract_cab_files() {
 		while true ; do
 			_extract_cab_files_cabdir="$sourcedir/cab.$_extract_cab_files_i"
 			if [ -e "$_extract_cab_files_cabdir" ] ; then
-				_extract_cab_files_i=$(($_extract_cab_files_i + 1))
+				_extract_cab_files_i=$((_extract_cab_files_i + 1))
 				continue
 			fi
 			create_dir "$_extract_cab_files_cabdir" "cab #$i work"
@@ -2261,7 +2464,7 @@ extract_cab_files() {
 			*)     extract "$_extract_cab_files_cabfile" ms_cab installshield ;;
 		esac
 		
-		_extract_cab_files_i=$(($_extract_cab_files_i + 1))
+		_extract_cab_files_i=$((_extract_cab_files_i + 1))
 	done
 	
 }
@@ -2364,6 +2567,7 @@ cleanup_workdir() {
 # Usage: create_workdir
 create_workdir() {
 	[ -z "$workdir" ] || return $true
+	selected_stuff=1
 	workdir="$datadir/$command-temp"
 	cleanup_workdir
 	on_exit cleanup_workdir
@@ -2385,8 +2589,14 @@ extract_source_exe() {
 	
 	cd "$sourcedir_exe" || die
 	case "$(basename "$1")" in
-		arx_jpn_*.exe) extract "$1" ms_cab installshield innosetup ;; # Japanese demo
-		*)             extract "$1" innosetup ms_cab installshield ;; # GOG.com setup
+		arx_demo_english.exe)
+			extract "$1" rar ace ms_cab installshield innosetup ;; # English demo
+		arx_demo_german.exe)
+			extract "$1" ace rar ms_cab installshield innosetup ;; # German demo
+		arx_jpn_*.exe)
+			extract "$1" ms_cab installshield innosetup rar ace ;; # Japanese demo
+		*)
+			extract "$1" innosetup ms_cab installshield rar ace ;; # GOG.com setup
 	esac
 	
 	extract_source_dir "$sourcedir_exe"
@@ -2463,7 +2673,7 @@ extract_source() {
 	
 	if [ -d "$sourcefile" ] ; then
 		extract_source_dir "$sourcefile"
-	else if [ -f "$sourcefile" ] ; then
+	elif [ -f "$sourcefile" ] ; then
 		case "$sourcefile" in
 			*.zip) extract_source_zip "$sourcefile" ;;
 			*.exe) extract_source_exe "$sourcefile" ;;
@@ -2478,7 +2688,7 @@ extract_source() {
 		esac
 	else
 		extract_source_cdrom "$sourcefile"
-	fi ; fi
+	fi
 	
 	print
 }
@@ -2495,16 +2705,20 @@ find_file_impl() {
 	_file_d="$(print "$_file" | sed 's/^\(.*\)\(\.[^.]*\)$/\1_default\2/')"
 	
 	# Prefer files from the patch - if availbale, they are most likely the correct ones
-	set -- -iname "$_file" -print -o -iname "$_file_d" -print
-	[ "$_patchable" = 1 ] && [ ! -z "$patchdir" ]  && find "$patchdir" "$@"
+	[ "$_patchable" = 1 ] && [ ! -z "$patchdir" ]  \
+		&& find "$patchdir" \( -name "$_file" -o -name "$_file_d" \)  -print
 	
 	# Find the file in the source
-	[ ! -z "$sourcedir" ] && find "$sourcedir" "$@"
-	[ -d "$sourcefile" ]  && find "$sourcefile" "$@"
+	[ ! -z "$sourcedir" ] && find "$sourcedir" -iname "$_file" -print
+	[ -d "$sourcefile" ]  && find "$sourcefile" -iname "$_file" -print
+	# Find the _default.pak variant only after the .pak variant
+	# This is required to detect the correct language fro Steam installs
+	# as the english version is always present as speech_default.pak and loc_default.pak
+	[ ! -z "$sourcedir" ] && find "$sourcedir" -iname "$_file_d" -print
+	[ -d "$sourcefile" ]  && find "$sourcefile" -iname "$_file_d" -print
 	
 	# Also find the file if it is already in the data directory, but don't ignore case
-	find "$datadir" -path '*-temp' -prune -o \
-		-name "$_file" -print -o -name "$_file_d" -print
+	find "$datadir" -path '*-temp' -prune \( -name "$_file" -o -name "$_file_d" \) -print
 	
 }
 # Find a file in patch, source and data directories.
@@ -2550,6 +2764,8 @@ data_lang_desc='' # Friendly data language/type label
 # <callback> receives a speech.pak checksum and sets data_lang and data_lang_desc
 detect_data_langauge() {
 	callback="$1"
+	
+	# TODO Add support for installing multiple languages at once
 	
 	if [ $install = 1 ]
 		then _detect_data_langauge_status=40
@@ -2837,11 +3053,11 @@ fi
 probe_data_dirs
 if [ $install = 1 ] ; then
 	verb='install to' ; access=--writable
-else if [ $patch = 1 ] ; then
-	verb='patch' ; access=--existing
+elif [ $patch = 1 ] ; then
+	verb='patch'      ; access=--existing
 else
 	verb='verify'     ; access=--existing
-fi ; fi
+fi
 user_select_entry $access --dir datadirs datadir \
 	"data directory to $verb" "$cyan" "$dim_cyan" "$verb"
 [ -z "$datadir" ] && die "Missing data dir."
@@ -2876,8 +3092,11 @@ determine_language() {
 		'4edf9f8c799190590b4cd52cfa5f91b1') data_lang='french'        ;;
 		'81f05dea47c52d43f01c9b44dd8fe962') data_lang='italian'       ;;
 		'677163bc319cd1e9aa1b53b5fb3e9402') data_lang='russian'       ;;
+		'5df8ba0d4ec58bd43d04307eb4c06d86') data_lang='russian'       ;;
 		'235b86700fc80b3eb86731d748013a38') data_lang='japanese'      ;;
 		'62ca7b1751c0615ee131a94f0856b389') data_lang='english-demo'  ;;
+		'09038e43508232c44537c162f9e3ecde') data_lang='french-demo'   ;;
+		'a424fcfc46dd4f11b04030efac15a668') data_lang='german-demo'   ;;
 		'eeacbd9a845ecc00054934e82e9d7dd3') data_lang='japanese-demo' ;;
 	esac
 	
@@ -2890,6 +3109,8 @@ determine_language() {
 		'russian')       data_lang_desc='Russian' ;;
 		'japanese')      data_lang_desc='Japanese' ;;
 		'english-demo')  data_lang_desc='English (demo)' ;;
+		'french-demo')   data_lang_desc='French (demo)' ;;
+		'german-demo')   data_lang_desc='German (demo)' ;;
 		'japanese-demo') data_lang_desc='Japanese (demo)' ;;
 	esac
 	
@@ -2911,7 +3132,7 @@ print " - speech.pak"
 f() {
 	
 	# Update progress bar
-	progress=$(($progress + $increment))
+	progress=$((progress + increment))
 	status $progress
 	
 	# Verify & copy file
@@ -2930,6 +3151,8 @@ case "$data_lang" in
 	russian)       loc_checksum='a131bf2398ee70a9c22a2bbffd9d0d99' ;;
 	japanese)      loc_checksum='9dcb0f5d7a517be4f1d9190419900892' ;;
 	english-demo)  loc_checksum='2ae16d3925c597dca70f960f175def3a' ;;
+	french-demo)   loc_checksum='4a8ac68341d4758a32d9cd04955b115e' ;;
+	german-demo)   loc_checksum='87accec0658aa109a3efa8b41aab61df' ;;
 	japanese-demo) loc_checksum='9d84cede805b13fdf7fce856ecc15b19' ;;
 	*)             loc_checksum=''
 esac
@@ -2951,6 +3174,20 @@ case "$data_lang" in
 	
 	english-demo)
 	f 0 'data2.pak'                                        958b78f8f370b06d769843137138c461
+	f 0 'data.pak'                                         5d7ba6e6c79ebf7fbb232eaced9e8ad9
+	f 0 'misc/logo.bmp'                                    aa3dfbd4bc9c863d10a0c5345ae5a4c9
+	f 0 'sfx.pak'                                          ea1b3e6d6f4906905d4a34f07e9a59ac
+	;;
+	
+	french-demo)
+	f 0 'data2.pak'                                        8dc1d1b3e85d4a41ae320aa3fa9c649a
+	f 0 'data.pak'                                         5d7ba6e6c79ebf7fbb232eaced9e8ad9
+	f 0 'misc/logo.bmp'                                    aa3dfbd4bc9c863d10a0c5345ae5a4c9
+	f 0 'sfx.pak'                                          ea1b3e6d6f4906905d4a34f07e9a59ac
+	;;
+	
+	german-demo)
+	f 0 'data2.pak'                                        143ba491a357263a2dfad9936a66eeb6
 	f 0 'data.pak'                                         5d7ba6e6c79ebf7fbb232eaced9e8ad9
 	f 0 'misc/logo.bmp'                                    aa3dfbd4bc9c863d10a0c5345ae5a4c9
 	f 0 'sfx.pak'                                          ea1b3e6d6f4906905d4a34f07e9a59ac
@@ -3013,7 +3250,8 @@ case "$data_lang" in
 	data_checksum_original='a91a0b39a046233debbb10b4850e13eb'
 	data_checksum_censored='a88d239dc7919ab113ff45483cb4ad46'
 	data_checksum_frenchcd='7ae3632eef92700cd6c5e143aa0fe67b'
-	f 0 'data.pak' "$data_checksum_original $data_checksum_censored $data_checksum_frenchcd"
+	data_checksum_russiancd='b297ab9ae41a593b13cbdd0ecaf1f999'
+	f 0 'data.pak' "$data_checksum_original $data_checksum_censored $data_checksum_frenchcd $data_checksum_russiancd"
 	
 esac
 
