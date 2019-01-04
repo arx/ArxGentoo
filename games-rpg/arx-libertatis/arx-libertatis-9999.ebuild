@@ -1,36 +1,36 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=5
-EGIT_REPO_URI="git://github.com/arx/ArxLibertatis.git"
-ARX_DATA_REPO_URI="git://github.com/arx/ArxLibertatisData.git"
+EAPI=6
+EGIT_REPO_URI="https://github.com/arx/ArxLibertatis.git"
+ARX_DATA_REPO_URI="https://github.com/arx/ArxLibertatisData.git"
 
 CMAKE_WARN_UNUSED_CLI=yes
-inherit eutils cmake-utils git-r3 gnome2-utils
+inherit cmake-utils git-r3 gnome2-utils
 
 DESCRIPTION="Cross-platform port of Arx Fatalis, a first-person role-playing game"
-HOMEPAGE="http://arx-libertatis.org/"
+HOMEPAGE="https://arx-libertatis.org/"
 SRC_URI=""
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="blender +c++0x debug +unity-build +crash-reporter static tools +sdl2"
+IUSE="blender +crash-reporter custom-optimization debug +sdl2 static tools +unity-build"
 
 COMMON_DEPEND="
 	!sdl2? ( media-libs/libsdl[X,video,opengl] )
 	sdl2? ( media-libs/libsdl2[X,video,opengl] )
 	media-libs/openal
 	virtual/opengl
+	media-libs/libepoxy
 	crash-reporter? (
-		dev-qt/qtcore:4
-		dev-qt/qtgui:4
+		dev-qt/qtcore:5
+		dev-qt/qtgui:5
+		dev-qt/qtwidgets:5
 		net-misc/curl[ssl]
 	)
 	!static? (
 		media-libs/freetype
-		media-libs/glew
 		sys-libs/zlib
 	)"
 RDEPEND="${COMMON_DEPEND}
@@ -41,10 +41,9 @@ DEPEND="${COMMON_DEPEND}
 	>=media-libs/glm-0.9.5.0
 	virtual/pkgconfig
 	static? (
-		|| ( media-libs/libpng[static-libs] media-libs/freetype[-png] )
-		|| ( app-arch/bzip2[static-libs] media-libs/freetype[-bzip2] )
+		|| ( media-libs/freetype[-png] media-libs/libpng[static-libs] )
+		|| ( media-libs/freetype[-bzip2] app-arch/bzip2[static-libs] )
 		media-libs/freetype[static-libs]
-		media-libs/glew[static-libs]
 		sys-libs/zlib[static-libs]
 	)"
 
@@ -66,22 +65,18 @@ src_configure() {
 	# editor does not build
 	local mycmakeargs=(
 		-DDATA_FILES="${ARX_DATA_DIR}"
-		$(cmake-utils_use_build crash-reporter CRASHREPORTER)
-		$(cmake-utils_use_build tools TOOLS)
-		$(cmake-utils_use debug DEBUG)
+		-DBUILD_TOOLS=$(usex tools)
+		-DDEBUG=$(usex debug)
 		-DRUNTIME_DATADIR=""
-		-DINSTALL_SCRIPTS=ON
-		$(cmake-utils_use blender INSTALL_BLENDER_PLUGIN)
-		-DSET_OPTIMIZATION_FLAGS=OFF
+		-DINSTALL_BLENDER_PLUGIN=$(usex blender)
+		-DSET_OPTIMIZATION_FLAGS=$(usex custom-optimization 0 1)
 		-DSTRICT_USE=ON
-		$(cmake-utils_use unity-build UNITY_BUILD)
-		$(cmake-utils_use_use c++0x CXX11)
-		-DUSE_NATIVE_FS=ON
-		-DUSE_OPENAL=ON
-		-DUSE_OPENGL=ON
-		$(usex crash-reporter "-DWITH_QT=4" "")
-		$(cmake-utils_use_use static STATIC_LIBS)
-		$(usex sdl2 -DWITH_SDL=2 -DWITH_SDL=1)
+		-DUNITY_BUILD=$(usex unity-build)
+		-DWITH_OPENGL=epoxy
+		-DBUILD_CRASHREPORTER=$(usex crash-reporter)
+		$(usex crash-reporter -DWITH_QT=5 "")
+		-DWITH_SDL=$(usex sdl2 2 1)
+		-DUSE_STATIC_LIBS=$(usex static)
 	)
 
 	if use blender ; then
@@ -97,10 +92,6 @@ src_configure() {
 	cmake-utils_src_configure
 }
 
-pkg_preinst() {
-	gnome2_icon_savelist
-}
-
 pkg_postinst() {
 	elog "optional dependencies:"
 	elog "  games-rpg/arx-fatalis-data (from CD or GOG)"
@@ -110,7 +101,7 @@ pkg_postinst() {
 	elog "You need the demo or full game data. Also see:"
 	elog "http://wiki.arx-libertatis.org/Getting_the_game_data"
 	elog
-	elog "If you have already installed the game or use the STEAM version,"
+	elog "If you have already installed the game or use the Steam version,"
 	elog "run \`arx-install-data\`"
 
 	gnome2_icon_cache_update

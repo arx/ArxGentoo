@@ -6,8 +6,8 @@ app-arch/innoextract:debug - Enable debug logging and the --debug command-line o
 app-arch/innoextract:lzma - Enable support for extracting lzma-compressed installers using app-arch/xz-utils.
 games-rpg/arx-fatalis-data:gog - Extract the data from the GOG.com installer.
 games-rpg/arx-libertatis:blender - Install the Arx Libertatis Blender addon and support library.
-games-rpg/arx-libertatis:c++0x - Compile arx-libertatis using the C++11 standard.
 games-rpg/arx-libertatis:crash-reporter - Build a dev-qt/qtgui-based tool that allows to submit crash information to the upstream backtracker.
+games-rpg/arx-libertatis:custom-optimization - Build with user-specified compiler optimizations (-Os, -O0, -O1, -O2, -O3, etc) from CFLAGS
 games-rpg/arx-libertatis:debug - Enable asserts and debug logging.
 games-rpg/arx-libertatis:sdl2 - Build against media-libs/libsdl2 instead of media-libs/libsdl.
 games-rpg/arx-libertatis:static - Link libraries statically, currently only sys-libs/zlib, media-libs/glew and media-libs/freetype (including media-libs/libpng and app-arch/bzip2 if FreeType is built with them)
