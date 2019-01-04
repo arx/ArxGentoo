@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
@@ -8,9 +7,9 @@ CDROM_OPTIONAL="yes"
 inherit eutils cdrom check-reqs
 
 DESCRIPTION="Arx Fatalis data files"
-HOMEPAGE="http://www.arkane-studios.com/uk/arx.php"
+HOMEPAGE="https://www.arkane-studios.com/uk/arx.php"
 SRC_URI="cdinstall? ( https://cdn.bethsoft.com/arxfatalis/patches/1.21/ArxFatalis_1.21_MULTILANG.exe )
-	gog? ( setup_arx_fatalis.exe )"
+	gog? ( setup_arx_fatalis_2.0.0.7.exe )"
 
 LICENSE="cdinstall? ( ArxFatalis-EULA-JoWooD ) gog? ( GOG-EULA )"
 SLOT="0"
@@ -20,7 +19,8 @@ REQUIRED_USE="|| ( !cdinstall !gog )"
 RESTRICT="binchecks mirror gog? ( fetch )"
 
 RDEPEND="games-rpg/arx-libertatis"
-DEPEND="gog? ( app-arch/innoextract )
+DEPEND="${RDEPEND}
+	gog? ( app-arch/innoextract )
 	cdinstall? (
 		|| ( app-arch/cabextract app-arch/libarchive app-arch/p7zip )
 		app-arch/innoextract
@@ -31,15 +31,13 @@ CHECKREQS_DISK_USR="617M"
 
 S="${WORKDIR}"
 
-MY_DATADIR="/usr/share/games/arx"
-
 pkg_nofetch() {
 	einfo "Please download ${A} from your GOG.com account after buying Arx Fatalis"
-	einfo "and put it into ${DISTDIR}."
+	einfo "and put it into your DISTDIR directory."
 }
 
 src_unpack() {
-	local arx_install_data_options=(--no-patch --batch --data-dir="${S}")
+	local arx_install_data_options=( --no-patch --batch --data-dir="${S}" )
 	if use gog ; then
 		arx_install_data_options+=( --source="${DISTDIR}/${A}" )
 	else if use cdinstall ; then
@@ -53,13 +51,10 @@ src_unpack() {
 	else
 		arx_install_data_options+=( --source="${ARX_FATALIS_SRC}" )
 	fi ; fi ; fi
-	# TODO Some version of the arx-libertatis ebuild puts arx-install-data into GAMES_BINDIR
-	#      which means we can't use it here.
-	local arx_install_data="${FILESDIR}/arx-install-data"
-	"${arx_install_data}" "${arx_install_data_options[@]}"
+	arx-install-data "${arx_install_data_options[@]}"
 }
 
 src_install() {
-	insinto "${MY_DATADIR}"
+	insinto /usr/share/arx
 	doins -r *
 }
