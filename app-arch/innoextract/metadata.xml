@@ -15,9 +15,9 @@
 			<email>daniel@constexpr.org</email>
 			<name>Daniel Scharrer</name>
 		</maintainer>
-		<bugs-to>http://innoextract.constexpr.org/issues</bugs-to>
-		<changelog>http://constexpr.org/innoextract/changelog</changelog>
-		<doc lang="en">http://constexpr.org/innoextract/innoextract.1</doc>
+		<bugs-to>https://innoextract.constexpr.org/issues</bugs-to>
+		<changelog>https://constexpr.org/innoextract/changelog</changelog>
+		<doc lang="en">https://constexpr.org/innoextract/innoextract.1</doc>
 		<remote-id type='github'>dscharrer/innoextract</remote-id>
 	</upstream>
 </pkgmetadata> 

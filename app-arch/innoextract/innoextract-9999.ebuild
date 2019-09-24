@@ -1,13 +1,13 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-EGIT_REPO_URI="git://github.com/dscharrer/innoextract.git"
+EAPI=7
+EGIT_REPO_URI="https://github.com/dscharrer/innoextract.git"
 
 inherit cmake-utils git-r3
 
 DESCRIPTION="A tool to unpack installers created by Inno Setup"
-HOMEPAGE="http://constexpr.org/innoextract/"
+HOMEPAGE="https://constexpr.org/innoextract/"
 SRC_URI=""
 
 LICENSE="ZLIB"
@@ -20,8 +20,6 @@ RDEPEND="
 	iconv? ( virtual/libiconv )
 	lzma? ( app-arch/xz-utils )"
 DEPEND="${RDEPEND}"
-
-DOCS=( README.md CHANGELOG )
 
 src_configure() {
 	local mycmakeargs=(
