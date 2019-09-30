@@ -54,9 +54,9 @@
 		</maintainer>
 		<bugs-to>https://bugs.arx-libertatis.org/</bugs-to>
 		<changelog>
-			http://wiki.arx-libertatis.org/Changelog
+			https://wiki.arx-libertatis.org/Changelog
 		</changelog>
-		<doc lang='en'>http://wiki.arx-libertatis.org/</doc>
+		<doc lang='en'>https://wiki.arx-libertatis.org/</doc>
 		<remote-id type='github'>arx/ArxLibertatis</remote-id>
 	</upstream>
 </pkgmetadata>
