@@ -16,14 +16,17 @@ SRC_URI=""
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="blender +crash-reporter custom-optimization debug +sdl2 static tools +unity-build"
+IUSE="blender +crash-reporter custom-optimization debug +sdl2 static tools +unity-build wayland +X"
+
+REQUIRED_USE="wayland? ( sdl2 )"
 
 COMMON_DEPEND="
-	!sdl2? ( media-libs/libsdl[X,video,opengl] )
-	sdl2? ( media-libs/libsdl2[X,video,opengl] )
+	!sdl2? ( media-libs/libsdl[X?,video,opengl] )
+	sdl2? ( media-libs/libsdl2[X?,wayland?,video,opengl] )
 	media-libs/openal
 	virtual/opengl
-	media-libs/libepoxy
+	media-libs/libepoxy[X?]
+	wayland? ( media-libs/libepoxy[egl] )
 	crash-reporter? (
 		dev-qt/qtcore:5
 		dev-qt/qtgui:5
@@ -77,6 +80,8 @@ src_configure() {
 		-DBUILD_CRASHREPORTER=$(usex crash-reporter)
 		$(usex crash-reporter -DWITH_QT=5 "")
 		-DWITH_SDL=$(usex sdl2 2 1)
+		-DUSE_X11=$(usex X)
+		-DUSE_WAYLAND=$(usex wayland)
 		-DUSE_STATIC_LIBS=$(usex static)
 	)
 
