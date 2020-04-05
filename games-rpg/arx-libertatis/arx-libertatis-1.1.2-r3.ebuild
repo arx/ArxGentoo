@@ -73,7 +73,7 @@ pkg_postinst() {
 	elog
 	elog "This package only installs the game binary."
 	elog "You need the demo or full game data. Also see:"
-	elog "http://wiki.arx-libertatis.org/Getting_the_game_data"
+	elog "https://wiki.arx-libertatis.org/Getting_the_game_data"
 	elog
 	elog "If you have already installed the game or use the STEAM version,"
 	elog "run \"/usr/bin/arx-install-data\""
