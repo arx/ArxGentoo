@@ -14,7 +14,7 @@ SRC_URI="https://arx-libertatis.org/files/${P}.tar.xz"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="amd64 x86"
-IUSE="+crash-reporter custom-optimization debug static tools +unity-build"
+IUSE="crash-reporter custom-optimization debug static tools +unity-build"
 
 COMMON_DEPEND="
 	media-libs/freetype
