@@ -17,7 +17,7 @@ KEYWORDS=""
 IUSE="debug +iconv +lzma"
 
 RDEPEND="
-	dev-libs/boost:=
+	dev-libs/boost:=[zlib,bzip2]
 	iconv? ( virtual/libiconv )
 	lzma? ( app-arch/xz-utils )"
 DEPEND="${RDEPEND}"
