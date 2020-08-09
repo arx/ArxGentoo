@@ -21,10 +21,10 @@ RESTRICT="binchecks mirror gog? ( fetch )"
 
 RDEPEND="games-rpg/arx-libertatis"
 DEPEND="${RDEPEND}
-	gog? ( app-arch/innoextract )
+	gog? ( app-arch/innoextract[lzma] )
 	cdinstall? (
 		|| ( app-arch/cabextract app-arch/libarchive app-arch/p7zip )
-		app-arch/innoextract
+		app-arch/innoextract[lzma]
 	)"
 
 CHECKREQS_DISK_BUILD="621M"
