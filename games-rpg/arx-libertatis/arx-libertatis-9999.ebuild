@@ -2,12 +2,12 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 EGIT_REPO_URI="https://github.com/arx/ArxLibertatis.git"
 ARX_DATA_REPO_URI="https://github.com/arx/ArxLibertatisData.git"
 
 CMAKE_WARN_UNUSED_CLI=yes
-inherit cmake-utils git-r3 gnome2-utils
+inherit cmake git-r3 gnome2-utils
 
 DESCRIPTION="Cross-platform port of Arx Fatalis, a first-person role-playing game"
 HOMEPAGE="https://arx-libertatis.org/"
@@ -45,7 +45,6 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 	dev-libs/boost
 	>=media-libs/glm-0.9.5.0
-	virtual/pkgconfig
 	static? (
 		|| ( media-libs/freetype[-png] media-libs/libpng[static-libs] )
 		|| ( media-libs/freetype[-bzip2] app-arch/bzip2[static-libs] )
@@ -53,6 +52,8 @@ DEPEND="${COMMON_DEPEND}
 		sys-libs/zlib[static-libs]
 	)
 	test? ( dev-util/cppunit )"
+BDEPEND="
+	virtual/pkgconfig"
 
 DOCS=( README.md AUTHORS CHANGELOG )
 
@@ -65,7 +66,7 @@ src_unpack() {
 }
 
 src_prepare() {
-	cmake-utils_src_prepare
+	cmake_src_prepare
 }
 
 src_configure() {
@@ -99,7 +100,7 @@ src_configure() {
 		)
 	fi
 
-	cmake-utils_src_configure
+	cmake_src_configure
 }
 
 pkg_postinst() {

@@ -2,10 +2,10 @@
 # Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 CMAKE_WARN_UNUSED_CLI=yes
-inherit cmake-utils gnome2-utils
+inherit cmake gnome2-utils
 
 DESCRIPTION="Cross-platform port of Arx Fatalis, a first-person role-playing game"
 HOMEPAGE="https://arx-libertatis.org/"
@@ -33,8 +33,9 @@ RDEPEND="${COMMON_DEPEND}
 	crash-reporter? ( sys-devel/gdb )"
 DEPEND="${COMMON_DEPEND}
 	dev-libs/boost
-	virtual/pkgconfig
 	static? ( media-libs/glew[static-libs] )"
+BDEPEND="
+	virtual/pkgconfig"
 
 DOCS=( README.md AUTHORS CHANGELOG )
 
@@ -63,7 +64,7 @@ src_configure() {
 		-DUSE_STATIC_LIBS=$(usex static)
 	)
 
-	cmake-utils_src_configure
+	cmake_src_configure
 }
 
 pkg_postinst() {
