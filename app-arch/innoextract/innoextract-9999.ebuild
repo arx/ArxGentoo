@@ -5,7 +5,7 @@
 EAPI=7
 EGIT_REPO_URI="https://github.com/dscharrer/innoextract.git"
 
-inherit cmake-utils git-r3
+inherit cmake git-r3
 
 DESCRIPTION="A tool to unpack installers created by Inno Setup"
 HOMEPAGE="https://constexpr.org/innoextract/"
@@ -30,5 +30,5 @@ src_configure() {
 		-DWITH_CONV=$(usex iconv iconv builtin)
 	)
 
-	cmake-utils_src_configure
+	cmake_src_configure
 }
