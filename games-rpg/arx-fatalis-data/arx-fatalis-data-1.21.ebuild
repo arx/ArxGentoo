@@ -1,8 +1,8 @@
-# Copyright 2020 Daniel Scharrer
+# Copyright 2020-2021 Daniel Scharrer
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
 CDROM_OPTIONAL="yes"
 inherit eutils cdrom check-reqs
@@ -12,7 +12,7 @@ HOMEPAGE="https://web.archive.org/web/20180201053030/https://www.arkane-studios.
 SRC_URI="cdinstall? ( https://cdn.bethsoft.com/arxfatalis/patches/1.21/ArxFatalis_1.21_MULTILANG.exe )
 	gog? ( setup_arx_fatalis_2.0.0.7.exe )"
 
-LICENSE="cdinstall? ( ArxFatalis-EULA-JoWooD ) gog? ( GOG-EULA )"
+LICENSE="cdinstall? ( all-rights-reserved ) gog? ( GOG-EULA )"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="gog"
