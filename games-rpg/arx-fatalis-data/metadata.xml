@@ -8,5 +8,10 @@
 	<longdescription>Data files of Arx Fatalis, a first-person role-playing game. The game can be run under linux using <pkg>games-rpg/arx-libertatis</pkg></longdescription>
 	<use>
 		<flag name='gog'>Extract the data from the GOG.com installer.</flag>
+		<flag name='french'>Use the French version of the GOG.com installer.</flag>
+		<flag name='german'>Use the German version of the GOG.com installer.</flag>
+		<flag name='italian'>Use the Italian version of the GOG.com installer.</flag>
+		<flag name='russian'>Use the Russian version of the GOG.com installer.</flag>
+		<flag name='spanish'>Use the Spanish version of the GOG.com installer.</flag>
 	</use>
 </pkgmetadata>

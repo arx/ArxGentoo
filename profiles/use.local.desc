@@ -4,7 +4,12 @@
 
 app-arch/innoextract:debug - Enable debug logging and the --debug command-line option.
 app-arch/innoextract:lzma - Enable support for extracting lzma-compressed installers using app-arch/xz-utils.
+games-rpg/arx-fatalis-data:french - Use the French version of the GOG.com installer.
+games-rpg/arx-fatalis-data:german - Use the German version of the GOG.com installer.
 games-rpg/arx-fatalis-data:gog - Extract the data from the GOG.com installer.
+games-rpg/arx-fatalis-data:italian - Use the Italian version of the GOG.com installer.
+games-rpg/arx-fatalis-data:russian - Use the Russian version of the GOG.com installer.
+games-rpg/arx-fatalis-data:spanish - Use the Spanish version of the GOG.com installer.
 games-rpg/arx-libertatis:blender - Install the Arx Libertatis Blender addon and support library.
 games-rpg/arx-libertatis:crash-reporter - Build a dev-qt/qtgui-based tool that allows to submit crash information to the upstream backtracker.
 games-rpg/arx-libertatis:custom-optimization - Build with user-specified compiler optimizations (-Os, -O0, -O1, -O2, -O3, etc) from CFLAGS
