@@ -7,27 +7,21 @@ Bugs in the software itself should go to the upstream bug trackers:
 * app-arch/innoextract: [innoextract.constexpr.org/issues](https://innoextract.constexpr.org/issues)
 * games-rpg/arx-libertatis: [bugs.arx-libertatis.org](https://bugs.arx-libertatis.org/)
 
-This is a gentoo overlay that can be used with layman to install [Arx Libertatis](https://arx-libertatis.org/) and other software under [Gentoo Linux](https://gentoo.org/).
+This is a gentoo overlay that can be used with eselect-repository to install [Arx Libertatis](https://arx-libertatis.org/) and other software under [Gentoo Linux](https://gentoo.org/).
 
 Refer to the [Wiki](https://wiki.arx-libertatis.org/) on how to install Arx Libertatis [under other Linux distributions or Windows](https://wiki.arx-libertatis.org/Download_and_installation).
 
 ## Installing
 
-You will need [layman](http://layman.sourceforge.net/) with **git** support, so install that first if you don't have it already:
+You will need [eselect-repository](https://github.com/projg2/eselect-repository/) with **git** support, so install that first if you don't have it already:
 
-    emerge app-portage/layman[git]
+    emerge --noreplace app-eselect/eselect-repository
 
 Next, to add this overlay run:
 
-    layman -f -a arx-libertatis
+    eselect repository enable arx-libertatis
 
 You can then install the packages using emerge.
-
-## Updating
-
-Overlays added using layman won't be updated by `emerge --fetch`, you need to run
-
-    layman -S
 
 ## Packages
 
