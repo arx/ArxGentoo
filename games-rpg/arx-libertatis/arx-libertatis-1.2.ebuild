@@ -5,7 +5,7 @@
 EAPI=7
 
 CMAKE_WARN_UNUSED_CLI=yes
-inherit cmake gnome2-utils
+inherit cmake xdg-utils
 
 DESCRIPTION="Cross-platform port of Arx Fatalis, a first-person role-playing game"
 HOMEPAGE="https://arx-libertatis.org/"
@@ -38,7 +38,7 @@ COMMON_DEPEND="
 		sys-libs/zlib
 	)"
 RDEPEND="${COMMON_DEPEND}
-	crash-reporter? ( sys-devel/gdb )
+	crash-reporter? ( dev-debug/gdb )
 	blender? ( media-gfx/blender:= )"
 DEPEND="${COMMON_DEPEND}
 	dev-libs/boost
@@ -104,9 +104,9 @@ pkg_postinst() {
 	elog "If you have already installed the game or use the Steam version,"
 	elog "run \`arx-install-data\`"
 
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
 
 pkg_postrm() {
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }

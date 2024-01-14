@@ -7,15 +7,13 @@ EGIT_REPO_URI="https://github.com/arx/ArxLibertatis.git"
 ARX_DATA_REPO_URI="https://github.com/arx/ArxLibertatisData.git"
 
 CMAKE_WARN_UNUSED_CLI=yes
-inherit cmake git-r3 gnome2-utils
+inherit cmake git-r3 xdg-utils
 
 DESCRIPTION="Cross-platform port of Arx Fatalis, a first-person role-playing game"
 HOMEPAGE="https://arx-libertatis.org/"
-SRC_URI=""
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS=""
 IUSE="blender +crash-reporter custom-optimization debug +sdl2 static test tools +unity-build wayland +X"
 
 REQUIRED_USE="wayland? ( sdl2 )"
@@ -40,7 +38,7 @@ COMMON_DEPEND="
 		sys-libs/zlib
 	)"
 RDEPEND="${COMMON_DEPEND}
-	crash-reporter? ( sys-devel/gdb )
+	crash-reporter? ( dev-debug/gdb )
 	blender? ( media-gfx/blender:= )"
 DEPEND="${COMMON_DEPEND}
 	dev-libs/boost
@@ -91,6 +89,7 @@ src_configure() {
 	)
 
 	if use blender ; then
+		# TODO blender no longer uses letters for the patch version
 		local blender_version="$(best_version media-gfx/blender)"
 		blender_version="${blender_version#media-gfx/blender-}"
 		blender_version="${blender_version/-*/}"
@@ -115,9 +114,9 @@ pkg_postinst() {
 	elog "If you have already installed the game or use the Steam version,"
 	elog "run \`arx-install-data\`"
 
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
 
 pkg_postrm() {
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
