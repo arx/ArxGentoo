@@ -26,7 +26,7 @@ COMMON_DEPEND="
 	media-libs/openal
 	virtual/opengl
 	media-libs/libepoxy[X?]
-	wayland? ( media-libs/libepoxy[egl] )
+	wayland? ( media-libs/libepoxy )
 	crash-reporter? (
 		dev-qt/qtcore:5
 		dev-qt/qtgui:5
